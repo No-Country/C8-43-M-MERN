@@ -1,9 +1,18 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const fs = require("fs");
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const PATH_ROUTES = __dirname;
 
-module.exports = router;
+const removeExtension = (filename) => {
+    return filename.split(".").shift();
+  };
+  
+  fs.readdirSync(PATH_ROUTES).filter((file) => {
+    const name = removeExtension(file);
+    if (name !== "index") {
+      router.use(`/${name}`, require(`./${file}`));
+    }
+  });
+
+module.exports = router
