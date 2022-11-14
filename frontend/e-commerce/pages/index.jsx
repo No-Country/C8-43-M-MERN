@@ -13,7 +13,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a>C8-43-MERN!</a>
+          Welcome to <span className='text-sky-600 font-sans font-bold'>E-commerce!</span>
         </h1>
       </main>
 
