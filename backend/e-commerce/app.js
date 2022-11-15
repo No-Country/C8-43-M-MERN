@@ -1,7 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const specs = require("./swagger")
+
 const app = express();
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
+
 const dbConnect = require("./config/mongo");
 
 app.use(cors());
