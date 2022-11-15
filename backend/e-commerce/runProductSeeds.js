@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 const mongoose = require("mongoose");
 
 const dbConnect = require("./config/mongo");
-const Product = require('./models/Product')
+const Product = require('./models/nosql/Product')
 
 const seedDB = async () => {
     try {
