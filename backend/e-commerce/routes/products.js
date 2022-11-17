@@ -38,7 +38,7 @@ router.get("/", getProductSearch)
 
 /**
  * @swagger
- * /products:
+ * /products/all:
  *   get:
  *     summary: Returns all products
  *     tags: [Products]
@@ -53,7 +53,7 @@ router.get("/", getProductSearch)
  *                 $ref: '#/components/schemas/Product'
  */
 
-router.get("/", getProducts);
+router.get("/all", getProducts);
 router.get("/:id", validatorGetItem, getProduct);
 
 
