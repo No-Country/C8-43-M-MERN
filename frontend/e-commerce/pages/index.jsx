@@ -33,7 +33,7 @@ export default function Home({ data }) {
         <section>
           <div className="bg-white">
             {/* Buscador */}
-            <div className="px-[600px] py-32">
+            <div className="px-[400px] py-32">
               <form>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -80,7 +80,6 @@ export default function Home({ data }) {
                 </button>
               </div>
             </div>
-
             {data.map(({ price, image, _id }) => (
               <div className={styles.container} key={_id}>
                 {/* Card */}
@@ -115,7 +114,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://localhost:4000/products");
+    const res = await fetch("http://localhost:4000/products/all");
     const data = await res.json();
     console.log(data)
     return {
