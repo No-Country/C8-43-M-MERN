@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
+    role: {
+      type: ["user", "seller"],
+      default: "user",
+    },
     name: {
       type: String,
       required: true,
@@ -22,14 +26,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    passwordVefified: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: ["user", "seller"],
-      default: "user",
-    },
     birthdate: {
       type: Date,
       min: "2004-11-17",
@@ -40,6 +36,11 @@ const UserSchema = new mongoose.Schema(
       type: ["female", "male", "unspecified"],
       default: "unspecified",
       required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+      default: "UNVERIFIED"
     },
   },
   { timestamps: true, versionKey: false }
