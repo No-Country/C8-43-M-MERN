@@ -6,6 +6,18 @@ const UserSchema = new mongoose.Schema(
       type: ["user", "seller"],
       default: "user",
     },
+    profileimage: {
+      url: {
+        type: String,
+        required: true,
+        default:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+      },
+      filename: {
+        type: String,
+        default: "defaultimage"
+      },
+    },
     name: {
       type: String,
       required: true,
@@ -40,7 +52,7 @@ const UserSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      default: "UNVERIFIED"
+      default: "UNVERIFIED",
     },
   },
   { timestamps: true, versionKey: false }

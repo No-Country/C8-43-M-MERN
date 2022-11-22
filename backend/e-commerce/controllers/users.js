@@ -4,6 +4,7 @@ const { handleHttpError } = require("../utils/handleError");
 const { getToken, getTokenData } = require("../config/jwt");
 const { sendEmail, getTemplate } = require("../config/nodemailer");
 const { encrypt, compare } = require("../utils/handlePassword");
+const path = require("path")
 
 const signUp = async (req, res) => {
   try {
@@ -83,7 +84,7 @@ const confirmEmail = async (req, res) => {
     await user.save();
 
     //!CONFIRMACION
-    res.send("Cuenta confirmada");
+    res.sendFile(path.join(`${__dirname}/../views/confirm.html`))
   } catch (error) {
     handleHttpError(res, "ERROR_CONFIRM_TOKEN");
   }
