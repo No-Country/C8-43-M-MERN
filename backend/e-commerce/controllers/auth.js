@@ -1,10 +1,10 @@
-const { usersModel } = require("../models");
+const { usersModel, sellersModel } = require("../models");
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../utils/handleError");
 const { getToken, getTokenData } = require("../config/jwt");
 const { sendEmail, getTemplate } = require("../config/nodemailer");
 const { encrypt, compare } = require("../utils/handlePassword");
-const path = require("path")
+const path = require("path");
 
 const signUp = async (req, res) => {
   try {
@@ -13,38 +13,57 @@ const signUp = async (req, res) => {
     const password = await encrypt(req.password);
     const body = { ...req, password };
 
-    // //! VERIFICO QUE EL USUARIO NO EXISTA
+    //! VERIFICO QUE EL USUARIO NO EXISTA
     let user = (await usersModel.findOne({ email: req.email })) || null;
+    let seller = (await sellersModel.findOne({ email: req.email })) || null;
 
-    if (user !== null) {
-      handleHttpError(res, "USER_ALREADY_EXIST", 404);
+    if (user !== null || seller !== null) {
+      handleHttpError(res, "USER_SELLER_ALREADY_EXIST", 404);
       return;
     }
 
-    //!CREO UN NUEVO USUARIO
-    user = await usersModel.create(body);
+    //!CREO UN NUEVO USUARIO O VENDEDOR
+    if (body.role === "user") {
+      user = await usersModel.create(body);
 
-    //!GENERAR EL TOKEN
-    const token = {
-      token: await getToken(user),
-      user,
-    };
+      //!GENERAR EL TOKEN
+      const token = {
+        token: await getToken(user),
+        user,
+      };
 
-    //!OBTENER TEMPLATE PARA EMAIL
-    const template = getTemplate(user.name, token);
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplate(user.name, token);
 
-    //!ENVIAR EMAIL DE CONFIRMACION
-    await sendEmail(user.email, "Email de prueba", template);
+      //!ENVIAR EMAIL DE CONFIRMACION
+      await sendEmail(user.email, "Email de prueba", template);
 
-    //!GUARDO USUARIO EN LA DB
-    await user.save();
+      //!GUARDO USUARIO EN LA DB
+      await user.save();
 
-    res.send({
-      success: true,
-      msg: "Registro exitoso",
-    });
+      res.send("Registro exitoso");
+    } else {
+      seller = await sellersModel.create(body);
+
+      //!GENERAR EL TOKEN
+      const token = {
+        token: await getToken(seller),
+        seller,
+      };
+
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplate(seller.name, token);
+
+      //!ENVIAR EMAIL DE CONFIRMACION
+      await sendEmail(seller.email, "Email de prueba", template);
+
+      //!GUARDO SELLER EN LA DB
+      await seller.save();
+
+      res.send("Registro exitoso");
+    }
   } catch (error) {
-    handleHttpError(res, "ERROR_SIGNUP_USER");
+    handleHttpError(res, "ERROR_SIGNUP_USER_SELLER");
   }
 };
 
@@ -62,29 +81,48 @@ const confirmEmail = async (req, res) => {
 
     //! VERIFICO QUE EL USUARIO(EMAIL) EXISTA
     let user = (await usersModel.findOne({ email: data.email })) || null;
+    let seller = (await sellersModel.findOne({ email: data.email })) || null;
 
-    if (user === null) {
-      handleHttpError(res, "USER_EMAIL_NOT_EXIST", 404);
-      return;
-    }
+    if (user !== null) {
+      // //! VERIFICO QUE EL USUARIO(ID) EXISTA
+      if (data._id !== user._id.toString()) {
+        handleHttpError(res, "ID_NOT_EXIST", 404);
+        return;
+      }
 
-    // //! VERIFICO QUE EL USUARIO(ID) EXISTA
-    if (data._id !== user._id.toString()) {
-      handleHttpError(res, "USER_ID_NOT_EXIST", 404);
-      return;
-    }
+      //!ACTUALIZO STATUS DEL USER
+      if (user.status !== "VERIFIED") {
+        user.status = "VERIFIED";
+      } else {
+        handleHttpError(res, "USER_ALREADY_VERIFIED", 404);
+        return;
+      }
+      await user.save();
 
-    //!ACTUALIZO STATUS DEL USER
-    if (user.status !== "VERIFIED") {
-      user.status = "VERIFIED";
+      //!CONFIRMACION
+      res.sendFile(path.join(`${__dirname}/../views/confirm.html`));
+    } else if (seller !== null) {
+      // //! VERIFICO QUE EL USUARIO(ID) EXISTA
+      if (data._id !== seller._id.toString()) {
+        handleHttpError(res, "ID_NOT_EXIST", 404);
+        return;
+      }
+
+      //!ACTUALIZO STATUS DEL USER
+      if (seller.status !== "VERIFIED") {
+        seller.status = "VERIFIED";
+      } else {
+        handleHttpError(res, "SELLER_ALREADY_VERIFIED", 404);
+        return;
+      }
+      await seller.save();
+
+      //!CONFIRMACION
+      res.sendFile(path.join(`${__dirname}/../views/confirm.html`));
     } else {
-      handleHttpError(res, "USER_ALREADY_VERIFIED", 404);
+      handleHttpError(res, "EMAIL_NOT_EXIST", 404);
       return;
     }
-    await user.save();
-
-    //!CONFIRMACION
-    res.sendFile(path.join(`${__dirname}/../views/confirm.html`))
   } catch (error) {
     handleHttpError(res, "ERROR_CONFIRM_TOKEN");
   }
@@ -95,37 +133,68 @@ const login = async (req, res) => {
     //!VERIFICO SI EL USUARIO(EMAIL) EXISTE
     req = matchedData(req);
     const user = await usersModel.findOne({ email: req.email });
+    const seller = await sellersModel.findOne({ email: req.email });
 
-    if (!user) {
-      handleHttpError(res, "USER_NOT_EXIST", 404);
+    if (user) {
+      //!VERIFICO SI EL USUARIO ESTA VERIFICADO
+      if (user.status !== "VERIFIED") {
+        handleHttpError(res, "USER_NOT_VERIFIED", 404);
+        return;
+      }
+
+      //!VERIFICO EL PASSWORD
+      const hashPassword = user.get("password");
+      const check = await compare(req.password, hashPassword);
+
+      if (!check) {
+        handleHttpError(res, "PASSWORD_INVALID", 401);
+        return;
+      }
+
+      //!OCULTO EL PASSWORD
+      user.set("password", undefined, { strict: false });
+
+      //!GENERO TOKEN DE SESION
+      const data = {
+        token: await getToken(user),
+        user,
+      };
+
+      //!RESPUESTA
+      res.send({ data });
+    } else if (seller) {
+      //!VERIFICO SI EL USUARIO ESTA VERIFICADO
+      if (seller.status !== "VERIFIED") {
+        handleHttpError(res, "SELLER_NOT_VERIFIED", 404);
+        return;
+      }
+
+      //!VERIFICO EL PASSWORD
+      const hashPassword = seller.get("password");
+      const check = await compare(req.password, hashPassword);
+
+      if (!check) {
+        handleHttpError(res, "PASSWORD_INVALID", 401);
+        return;
+      }
+
+      //!OCULTO EL PASSWORD
+      seller.set("password", undefined, { strict: false });
+
+      //!GENERO TOKEN DE SESION
+      const data = {
+        token: await getToken(seller),
+        seller,
+      };
+
+      //!RESPUESTA
+      res.send({ data });
+    } else {
+      handleHttpError(res, "USER__SELLER_NOT_EXIST", 404);
       return;
     }
-    //!VERIFICO SI EL USUARIO ESTA VERIFICADO
-    if (user.status !== "VERIFIED") {
-      handleHttpError(res, "USER_NOT_VERIFIED", 404);
-      return;
-    }
-
-    //!VERIFICO EL PASSWORD
-    const hashPassword = user.get("password");
-    const check = await compare(req.password, hashPassword);
-
-    if (!check) {
-      handleHttpError(res, "PASSWORD_INVALID", 401);
-      return;
-    }
-
-    //!OCULTO EL PASSWORD
-    user.set("password", undefined, { strict: false }); 
-
-    //!GENERO TOKEN DE SESION
-    const data = {
-      token: await getToken(user),
-      user,
-    };
-
-    res.send({ data });
   } catch (error) {
+    console.log(error);
     handleHttpError(res, "ERROR_LOGIN_USER");
   }
 };

@@ -2,6 +2,7 @@ const { check } = require("express-validator");
 const validateResults = require("../utils/handleValidator");
 
 const validatorRegister = [
+  check("role").exists().notEmpty(),
   check("name").exists().notEmpty().isString(),
   check("lastname").exists().notEmpty().isString(),
   check("email").exists().notEmpty().isEmail(),
