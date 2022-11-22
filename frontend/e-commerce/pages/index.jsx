@@ -1,13 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import styles from "./../styles/home.module.css";
 import { ImStarEmpty } from "react-icons/im";
-import { Avatar } from "@nextui-org/react";
+import { IoIosArrowForward } from "react-icons/io";
+import { Avatar, Button } from "@nextui-org/react";
 
 export default function Home({ data }) {
-
   return (
     <Layout>
       <div>
@@ -33,13 +34,13 @@ export default function Home({ data }) {
         <section>
           <div className="bg-white">
             {/* Buscador */}
-            <div className="px-[400px] py-32">
+            <div className="px-[600px] py-32">
               <form>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       aria-hidden="true"
-                      className="w-8 h-8 text-gray-700"
+                      className="w-8 h-8 text-green-800"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -56,7 +57,7 @@ export default function Home({ data }) {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-4 pl-16 text-lg text-gray-900 border border-gray-300 rounded-xl bg-yellow-100 focus:ring-green-300 focus:border-green-300 "
+                    className="block w-full p-2 pl-16 text-lg text-green-800 border border-gray-300 rounded-xl bg-yellow-100 focus:ring-green-800 focus:border-green-800 "
                     placeholder="Buscar..."
                     required
                   />
@@ -64,47 +65,55 @@ export default function Home({ data }) {
               </form>
             </div>
             <div className="flex gap-8 ml-36 mb-8">
-              <div className="pt-2">
+              <div>
                 <Avatar
                   src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                  size="xl"
+                  color="gradient"
+                  bordered
+                  css={{ size: "$20" }}
                 />
               </div>
-              <div className="flex flex-col">
-                <h3 className="text-xl font-semibold pl-2">Maxi Man</h3>
-                <button
-                  type="button"
-                  class="text-yellow-200 bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-base px-8 py-1 text-center mr-2 mb-2"
-                >
+              <div className="flex flex-col mx-4">
+                <h3 className="text-xl font-semibold">Maxi Man</h3>
+                <Button shadow color="success" size="sm" auto>
                   Seguir
-                </button>
+                </Button>
               </div>
             </div>
-            {data.map(({ price, image, _id }) => (
-              <div className={styles.container} key={_id}>
-                {/* Card */}
-                <Image
-                  src={image[0]}
-                  alt="photo"
-                  width="800"
-                  height="800"
-                  className="w-96 h-72"
-                />
-                <div className={styles.icon}>
-                  <ImStarEmpty />
-                </div>
-                <div className={styles.text}>{price}</div>
-                <div className="flex mt-2">
-                  <div className={styles.circleBlack}></div>
-                  <div className={styles.circleGreen}></div>
-                  <div className="ml-32">
-                    <p className="text-gray-700 text-base font-semibold">
-                      Xxl-Xl-L
-                    </p>
+            <div className="flex mx-16">
+              {data.slice(0, 3).map(({ price, image, _id }) => (
+                <div className={styles.container} key={_id}>
+                  {/* Card */}
+                  <Image
+                    src={image[0]}
+                    alt="photo"
+                    width="800"
+                    height="800"
+                    className="w-96 h-72"
+                  />
+                  <div className={styles.icon}>
+                    <ImStarEmpty />
+                  </div>
+                  <div className={styles.text}>{price}</div>
+                  <div className="flex mt-2">
+                    <div className={styles.circleBlack}></div>
+                    <div className={styles.circleGreen}></div>
+                    <div className="ml-32">
+                      <p className="text-gray-700 text-base font-semibold">
+                        Xxl-Xl-L
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+              <Link
+                href="/designer"
+                className="flex flex-col text-green-800 hover:text-green-600"
+              >
+                <IoIosArrowForward className="text-4xl  mt-16" />
+                <span className="text-xl">Ver más</span>
+              </Link>
+            </div>
           </div>
         </section>
       </div>
@@ -116,7 +125,7 @@ export async function getStaticProps() {
   try {
     const res = await fetch("http://localhost:4000/products/all");
     const data = await res.json();
-    console.log(data)
+    console.log(data);
     return {
       props: {
         data,

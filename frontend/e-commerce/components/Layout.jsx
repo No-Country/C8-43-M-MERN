@@ -1,3 +1,6 @@
+import { Avatar } from "@nextui-org/react";
+
+
 export default function Layout({ children }) {
   return (
     <div>
@@ -8,19 +11,13 @@ export default function Layout({ children }) {
           </a>
           <div className="flex gap-8 items-center ml-[1000px]">
             <div className="flex md:order-2">
-              <div class="overflow-hidden relative w-14 h-14 bg-white rounded-full">
-                <svg
-                  class="absolute -left-1 w-16 h-16 text-gray-800"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+              <div class="overflow-hidden relative w-16 h-16 rounded-full">
+              <Avatar
+                  src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                  size="xl"
+                  color="success"
+                  bordered
+                />
               </div>
 
               {/* Crear el menu hamburger para el responsive */}
