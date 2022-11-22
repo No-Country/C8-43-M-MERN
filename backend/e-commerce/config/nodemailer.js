@@ -37,7 +37,7 @@ const getTemplate = (name, token) => {
           <h2>Hola ${name}</h2>
           <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
           <a
-              href="${process.env.PUBLIC_URL}/users/confirm/${token.token}"
+              href="${process.env.PUBLIC_URL}/auth/confirm/${token.token}"
               target="_blank"
           >Confirmar Cuenta</a>
       </div>
