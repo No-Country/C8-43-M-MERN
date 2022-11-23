@@ -5,9 +5,10 @@ const SECRET_WORD = process.env.SECRET_WORD;
 const getToken = async (user) => {
   const sign = await jwt.sign(
     {
-      //!TOKENIZO ESTAS 2 PROPIEDADES
+      //!TOKENIZO ESTAS 3 PROPIEDADES
       _id: user._id,
       email: user.email,
+      role: user.role
     },
     SECRET_WORD,
     { expiresIn: "2h" }
