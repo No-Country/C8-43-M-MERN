@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { getProducts, getProduct, getProductSearch } = require("../controllers/products");
 const { validatorGetItem } = require("../validators/products");
+const { authMiddleware } = require("../middlewares/session");
+
 
 
 router.get("/", getProductSearch)
@@ -53,7 +55,7 @@ router.get("/", getProductSearch)
  *                 $ref: '#/components/schemas/Product'
  */
 
-router.get("/all", getProducts);
+router.get("/all", authMiddleware, getProducts);
 router.get("/:id", validatorGetItem, getProduct);
 
 
