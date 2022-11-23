@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { Schema, mongoose } = require("mongoose");
 
 const SellerSchema = new mongoose.Schema(
   {
@@ -57,6 +57,10 @@ const SellerSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    products: [{
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+    }]
   },
   { timestamps: true, versionKey: false }
 );
