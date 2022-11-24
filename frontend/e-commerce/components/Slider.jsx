@@ -6,7 +6,7 @@ export default function Slider() {
     <div className="mx-32 my-8">
     <Carousel autoPlay>
       <div className="pb-32">
-        <p className="text-gray-700 text-2xl px-64">
+        <p className="text-gray-300 text-2xl px-64">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           Magnam qui impedit animi, eaque nostrum id corporis obcaecati
           omnis, praesentium inventore, esse voluptas? Hic, facere
@@ -14,7 +14,7 @@ export default function Slider() {
         </p>
       </div>
       <div>
-        <p className="text-gray-700 text-2xl px-64">
+        <p className="text-gray-300 text-2xl px-64">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           Magnam qui impedit animi, eaque nostrum id corporis obcaecati
           omnis, praesentium inventore, esse voluptas? Hic, facere
@@ -22,7 +22,7 @@ export default function Slider() {
         </p>
       </div>
       <div>
-        <p className="text-gray-700 text-2xl px-64">
+        <p className="text-gray-300 text-2xl px-64">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           Magnam qui impedit animi, eaque nostrum id corporis obcaecati
           omnis, praesentium inventore, esse voluptas? Hic, facere
