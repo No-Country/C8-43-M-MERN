@@ -18,7 +18,7 @@ export default function Home({ data }) {
           <link rel="icon" href="/img/logo4.png" />
         </Head>
 
-        <main className="flex flex-col bg-[#87c38f] text-center justify-center">
+        <main className="flex flex-col bg-[#1B5B45] text-center justify-center">
           <div className="mx-auto my-32">
             <Image src="/img/logo2.png" width="400" height="400" alt="logo" />
             <Image
@@ -108,9 +108,9 @@ export default function Home({ data }) {
               ))}
               <Link
                 href="/designer"
-                className="flex flex-col text-green-800 hover:text-green-600"
+                className="flex flex-col ml-16 text-green-800 hover:text-green-600"
               >
-                <IoIosArrowForward className="text-4xl  mt-16" />
+                <IoIosArrowForward className="text-4xl mt-16" />
                 <span className="text-xl">Ver más</span>
               </Link>
             </div>

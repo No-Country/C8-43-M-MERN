@@ -3,8 +3,9 @@ import Image from "next/image";
 import Layout from "../components/Layout";
 import styles from "./../styles/home.module.css";
 import { ImStarEmpty } from "react-icons/im";
-import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
+import {BsInstagram} from 'react-icons/bs';
+import {FaFacebookF, FaBehance} from 'react-icons/fa';
 
 export default function Designer({ data }) {
   return (
@@ -40,9 +41,9 @@ export default function Designer({ data }) {
         <section className="flex flex-col">
           <h3 className="text-2xl font-semibold">Enlaces</h3>
           <ul>
-            <li>Maxi Man</li>
-            <li>Maxi Man</li>
-            <li>Maxi Man</li>
+            <li className="flex gap-4"> <BsInstagram className="mt-1 text-xl"/> Maxi Man</li>
+            <li className="flex gap-4"> <FaFacebookF className="mt-1 text-xl"/>Maxi Man</li>
+            <li className="flex gap-2"> <FaBehance className="mt-1 text-xl"/>Maxi Man</li>
           </ul>
         </section>
         <hr class="my-8 h-px bg-yellow-300 border-0"></hr>
@@ -53,8 +54,8 @@ export default function Designer({ data }) {
               <Link href={`${_id}`} className={styles.container} key={_id}>
                 {/* Card */}
                 <Image
-                  src={image[0]}
-                  alt="photo"
+                  src={image ? image[0] : ''}
+                  alt="No hay imagen!"
                   width="800"
                   height="800"
                   className="w-72 h-72"
