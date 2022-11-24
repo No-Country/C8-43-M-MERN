@@ -8,4 +8,16 @@ const validatorGetItem = [
   },
 ];
 
-module.exports = {validatorGetItem}
+const validatorCreateItem = [
+  check("name").exists().notEmpty().isString(),
+  check("color").exists().notEmpty().isString(),
+  check("category").exists().notEmpty().isString(),
+  check("sizes").exists().notEmpty().isString(),
+  check("price").exists().notEmpty().isNumeric(),
+  check("description").exists().notEmpty().isString(),
+  (req, res, next) => {
+    return validateResults(req, res, next);
+  },
+];
+
+module.exports = {validatorGetItem, validatorCreateItem}
