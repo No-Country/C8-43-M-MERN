@@ -55,7 +55,7 @@ router.get("/", getProductSearch)
  *                 $ref: '#/components/schemas/Product'
  */
 
-router.get("/all", authMiddleware, getProducts);
+router.get("/all", getProducts);
 router.get("/:id", validatorGetItem, getProduct);
 
 
