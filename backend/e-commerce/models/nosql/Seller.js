@@ -1,21 +1,21 @@
-const mongoose = require("mongoose");
+const { Schema, mongoose } = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
+const SellerSchema = new mongoose.Schema(
   {
     role: {
       type: ["user", "seller"],
-      default: "user",
+      default: "seller",
     },
     profileimage: {
       url: {
         type: String,
         required: true,
         default:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+          "https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png",
       },
       filename: {
         type: String,
-        default: "defaultimage"
+        default: "defaultimage",
       },
     },
     name: {
@@ -54,8 +54,15 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: "UNVERIFIED",
     },
+    description: {
+      type: String,
+    },
+    products: [{
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+    }]
   },
   { timestamps: true, versionKey: false }
 );
 
-module.exports = mongoose.model("users", UserSchema);
+module.exports = mongoose.model("sellers", SellerSchema);
