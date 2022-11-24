@@ -13,7 +13,7 @@ function contact() {
                     <link rel="icon" href="/img/logo4.png" />
                 </Head>
 
-                <section className="mx-[250px] my-[80px]">
+                <section className="mx-[250px] my-[80px] max-w-[1024px] mx-auto">
 
                     <header>
                         <h3 className="font-normal text-[30px]">Ayuda/Contacto</h3>
@@ -82,9 +82,9 @@ function contact() {
 
                 </section>
 
-                <hr className="mx-[250px]" />
+                <hr className="mx-[250px] max-w-[1024px] mx-auto" />
 
-                <section className="mx-[250px]">
+                <section className="mx-[250px] max-w-[1024px] mx-auto">
 
                     <article className="mt-[50px]">
                         <header className="mb-[15px]">
@@ -347,7 +347,7 @@ function contact() {
 
                 </section>
 
-                <section className="mx-[250px] mt-[60px] mb-[215px]">
+                <section className="mx-[250px] mt-[60px] mb-[215px] max-w-[1024px] mx-auto">
                     <form action="" className="flex flex-col gap-[15px]">
                         <div>
                             <label htmlFor="name/lastname">Nombre y apellido</label>
@@ -370,103 +370,103 @@ function contact() {
                 </section>
 
                 <section className="bg-[#D9D9D9] pb-[50px]">
-                <article className="mx-[250px] flex flex-col">
-                    <header className="mb-[30px] pt-[23px] self-start ">
-                        <h3 className="font-medium text-2xl">Nuestro equipo</h3>
-                    </header>
-                    <div className="">
-                        <ul className="flex m-0 justify-between ">
+                    <article className="mx-[250px] flex flex-col max-w-[1024px] mx-auto">
+                        <header className="mb-[30px] pt-[23px] self-start ">
+                            <h3 className="font-medium text-2xl">Nuestro equipo</h3>
+                        </header>
+                        <div className="">
+                            <ul className="flex m-0 justify-between">
 
-                            <li>
-                                <header className="font-medium text-xl">Frond</header>
-                                <div className="flex flex-col gap-2">
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
+                                <li>
+                                    <header className="font-medium text-xl">Frond</header>
+                                    <div className="flex flex-col gap-2">
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
                                     </div>
+                                </li>
 
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
+                                <li>
+                                    <header className="font-medium text-xl">Back</header>
+                                    <div className="flex flex-col gap-2">
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
                                     </div>
+                                </li>
 
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
+                                <li>
+                                    <header className="font-medium text-xl">Tester</header>
+                                    <div className="flex flex-col gap-2">
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
                                     </div>
+                                </li>
 
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
+                                <li>
+                                    <header className="font-medium text-xl">UX/UI</header>
+                                    <div className="flex flex-col gap-2">
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="font-normal">Name</p>
+                                            <p className="font-normal">Link linkedin</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
 
-                            <li>
-                                <header className="font-medium text-xl">Back</header>
-                                <div className="flex flex-col gap-2">
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <header className="font-medium text-xl">Tester</header>
-                                <div className="flex flex-col gap-2">
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <header className="font-medium text-xl">UX/UI</header>
-                                <div className="flex flex-col gap-2">
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-normal">Name</p>
-                                        <p className="font-normal">Link linkedin</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                </article>
-            </section>
+                            </ul>
+                        </div>
+                    </article>
+                </section>
 
             </div>
         </Layout>

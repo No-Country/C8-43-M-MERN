@@ -12,10 +12,10 @@ function about() {
                     <link rel="icon" href="/img/logo4.png" />
                 </Head>
 
-                <section className="mt-[80px]">
+                <section className="mt-[80px] mx-[250px] flex flex-col items-center justify-center max-w-[1024px] mx-auto">
 
-                    <article className="flex flex-col mx-[250px] items-center">
-                        <header className="col-span-2 mb-[30px] self-start ml-4">
+                    <article className="flex flex-col  items-center w-full ">
+                        <header className="col-span-2 mb-[30px] self-start ml-32">
                             <p className="font-medium text-2xl ">Nuestra Mision</p>
                         </header>
                         <div className="flex col-span-2">
@@ -32,8 +32,8 @@ function about() {
                         </div>
                     </article>
 
-                    <article className="flex flex-col justify-center mx-[250px]">
-                        <header className="col-span-4 ml-4">
+                    <article className="flex flex-col items-center justify-center w-full  ">
+                        <header className="col-span-4 self-start ml-32">
                             <p className="font-medium text-2xl my-8">Nuestros valores</p>
                         </header>
                         <div className="flex gap-[80px]">
@@ -84,15 +84,15 @@ function about() {
 
                     </article>
 
-                    <article className="flex flex-col items-center  mx-[250px]">
-                        <header className="self-start ml-4 ">
+                    <article className="flex flex-col items-center self-center w-full  ">
+                        <header className="self-start ml-32">
                             <h3 className="font-medium text-2xl my-8">¿Que te ofrecemos?</h3>
                         </header>
 
                         <article className="flex mb-14">
                             <div className="flex">
                                 <div className="w-[278px] h-[155px] bg-[#D9D9D9] "></div>
-                                <div className="w-[450px] ml-5">
+                                <div className="w-[450px] ml-8">
                                     <p>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
                                         sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
@@ -107,7 +107,7 @@ function about() {
                         <article className="flex mb-14">
                             <div className="flex flex-row-reverse">
                                 <div className="w-[278px] h-[155px] bg-[#D9D9D9] col-start-2 "></div>
-                                <div className="w-[450px] ml-5">
+                                <div className="w-[450px] mr-8">
                                     <p>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
                                         sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
@@ -123,12 +123,12 @@ function about() {
                 </section>
 
                 <section className="bg-[#D9D9D9] pb-[50px]">
-                    <article className="mx-[250px] flex flex-col">
-                        <header className="mb-[30px] pt-[23px] self-start">
+                    <article className="mx-[250px] flex flex-col max-w-[1024px] mx-auto">
+                        <header className="mb-[30px] pt-[23px] self-start ml-32">
                             <h3 className="font-medium text-2xl">Nuestro equipo</h3>
                         </header>
                         <div className="">
-                            <ul className="flex m-0 justify-between">
+                            <ul className="flex m-0 justify-evenly">
 
                                 <li>
                                     <header className="font-medium text-xl">Frond</header>
