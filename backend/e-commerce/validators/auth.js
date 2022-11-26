@@ -7,7 +7,6 @@ const validatorRegister = [
   check("lastname").exists().notEmpty().isString(),
   check("email").exists().notEmpty().isEmail(),
   check("password").exists().notEmpty().isLength({ min: 6, max: 15 }),
-  check("birthdate").exists().notEmpty().isISO8601().toDate(),
   check("sex").exists().notEmpty().isString(),
 
   (req, res, next) => {

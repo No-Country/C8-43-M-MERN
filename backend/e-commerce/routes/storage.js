@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const uploadMiddleware = require("../utils/handleStorage");
-const { updateImage, deleteImage } = require("../controllers/storage");
+const { updatePerfilImage, deletePerfilImage } = require("../controllers/storage");
 const { authMiddleware } = require("../middlewares/session");
 const { validatorGetItem } = require("../validators/storage");
 
-router.put("/", uploadMiddleware.single("file"), authMiddleware, updateImage);
-router.delete("/:id", authMiddleware, validatorGetItem, deleteImage);
+router.put("/", uploadMiddleware.single("file"), authMiddleware, updatePerfilImage);
+router.delete("/:id", authMiddleware, validatorGetItem, deletePerfilImage);
 
 module.exports = router;

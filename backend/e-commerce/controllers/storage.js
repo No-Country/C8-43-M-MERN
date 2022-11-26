@@ -6,7 +6,7 @@ const { handleHttpError } = require("../utils/handleError");
 const { getTokenData } = require("../config/jwt");
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
-const updateImage = async (req, res) => {
+const updatePerfilImage = async (req, res) => {
   try {
     //!ESTABLEZCO NOMBRE Y URL PARA LA IMAGEN SUBIDA
     const { file } = req;
@@ -61,7 +61,7 @@ const updateImage = async (req, res) => {
   }
 };
 
-const deleteImage = async (req, res) => {
+const deletePerfilImage = async (req, res) => {
   try {
     //!BUSCO USER/SELLER
     const { id } = matchedData(req);
@@ -105,6 +105,6 @@ const deleteImage = async (req, res) => {
 };
 
 module.exports = {
-  updateImage,
-  deleteImage,
+  updatePerfilImage,
+  deletePerfilImage,
 };

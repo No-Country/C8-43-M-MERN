@@ -1,12 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { createProduct, updateProduct, deleteProduct } = require("../controllers/seller");
+const resize = require("../middlewares/resize")
+const uploadMiddleware = require("../utils/handleStorage");
+const { getSeller, createProduct, updateProduct, updatePerfilSeller, updateProductImage, deleteProduct } = require("../controllers/seller");
+const { validatorGetSeller } = require("../validators/sellers");
 const { validatorGetItem, validatorCreateItem } = require("../validators/products");
 const { authMiddleware } = require("../middlewares/session");
-const { userRole, sellerRole } = require("../middlewares/role")
+const { sellerRole } = require("../middlewares/role")
 
-router.post("/create", sellerRole, authMiddleware, validatorCreateItem, createProduct)
+router.get("/:id", validatorGetSeller, getSeller)
+router.put("/:id", authMiddleware, validatorGetSeller, updatePerfilSeller)
+router.post("/create", sellerRole, authMiddleware, uploadMiddleware.single("image"), resize, validatorCreateItem, createProduct)
 router.put("/product/update/:id", sellerRole, authMiddleware, updateProduct)
+router.put("/product/update/image/:id", sellerRole, authMiddleware, uploadMiddleware.single("image"), resize, validatorGetItem, updateProductImage);
 router.delete("/product/:id", sellerRole, authMiddleware, validatorGetItem, deleteProduct)
 
 module.exports = router;
