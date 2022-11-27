@@ -1,10 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-const PUBLIC_URL = process.env.PUBLIC_URL;
 const { productsModel, sellersModel } = require("../models");
 const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
 const { getTokenData } = require("../config/jwt");
+const cloudinary = require("../utils/handleCloudinary");
 
 const getSeller = async (req, res) => {
   try {
@@ -24,15 +22,17 @@ const updatePerfilSeller = async (req, res) => {
   try {
     //!BUSCO SELLER EN LA DB
     const { id } = req.params;
-    const { name, lastname, description } = req.body
+    const { name, lastname, description } = req.body;
+
+    //!ACTUALIZO
     const seller = await sellersModel.findOneAndUpdate(
       { _id: id },
       { $set: { name, lastname, description } }
     );
 
-    res.send({ msg: "Perfil actualizado", seller });
+    //!RESPUESTA
+    res.send("Perfil actualizado");
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_UPDATE_PERFIL");
   }
 };
@@ -50,16 +50,16 @@ const createProduct = async (req, res) => {
     //!ASIGNO ID DEL SELLER AL PRODUCTO
     product.seller = dataToken._id;
 
-    //!ESTABLEZCO NOMBRE Y URL PARA LA IMAGEN SUBIDA
-    const { file } = req;
-    const fileData = {
-      filename: file.filename,
-      url: `${PUBLIC_URL}/${file.filename}`,
-    };
+    //!REQUIERO Y SUBO IMAGEN
+    if (!req.file) {
+      res.send("Seleccione imagen");
+      return;
+    }
+    const fileData = await cloudinary.uploader.upload(req.file.path);
 
     //!AGREGO IMAGEN AL PRODUCTO
     product.image.url = fileData.url;
-    product.image.filename = fileData.filename;
+    product.image.filename = fileData.public_id;
 
     //!GUARDO PRODUCTO
     await product.save();
@@ -109,21 +109,18 @@ const updateProductImage = async (req, res) => {
     const product = await productsModel.findById(id);
 
     //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
-    const filePath = path.join(
-      `${__dirname}/../images/uploads/${product.image.filename}`
-    );
-    fs.unlinkSync(filePath);
+    cloudinary.v2.uploader.destroy(product.image.filename);
 
-    //!ESTABLEZCO NOMBRE Y URL PARA LA IMAGEN SUBIDA
-    const { file } = req;
-    const fileData = {
-      filename: file.filename,
-      url: `${PUBLIC_URL}/${file.filename}`,
-    };
+    //!REQUIERO Y SUBO IMAGEN
+    if (!req.file) {
+      res.send("Seleccione imagen");
+      return;
+    }
+    const fileData = await cloudinary.uploader.upload(req.file.path);
 
     //!ACTUALIZO IMAGEN DEL USER
     product.image.url = fileData.url;
-    product.image.filename = fileData.filename;
+    product.image.filename = fileData.public_id;
 
     await product.save();
 
@@ -151,10 +148,7 @@ const deleteProduct = async (req, res) => {
 
     //!BUSCO PRODUCTO Y ELIMINO IMAGEN(ARCHIVO)
     const product = await productsModel.findById(id);
-    const filePath = path.join(
-      `${__dirname}/../images/uploads/${product.image.filename}`
-    );
-    fs.unlinkSync(filePath);
+    cloudinary.v2.uploader.destroy(product.image.filename);
 
     //!ELIMINO PRODUCTO
     await productsModel.deleteOne({ _id: id });
@@ -162,7 +156,6 @@ const deleteProduct = async (req, res) => {
     //!RESPUESTA
     res.send("Producto borrado");
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_DELETE_PRODUCT");
   }
 };
