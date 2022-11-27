@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { Schema, mongoose } = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -36,12 +36,6 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
-    },
-    birthdate: {
-      type: Date,
-      min: "2004-11-17",
-      default: Date.now,
       required: true,
     },
     sex: {
