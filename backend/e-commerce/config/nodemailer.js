@@ -1,4 +1,3 @@
-const { handleHttpError } = require("../utils/handleError");
 const nodemailer = require("nodemailer");
 const VALEN_USER = process.env.VALEN_USER;
 const VALEN_PASS = process.env.VALEN_PASS;
