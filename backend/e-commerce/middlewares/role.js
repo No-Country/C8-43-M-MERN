@@ -35,7 +35,6 @@ const sellerRole = async (req, res, next) => {
     }
 
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_SELLER_PERMISSIONS", 403);
   }
 };
