@@ -1,19 +1,19 @@
-const fs = require("fs");
-const path = require("path");
 const { usersModel, sellersModel } = require("../models");
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../utils/handleError");
 const { getTokenData } = require("../config/jwt");
-const PUBLIC_URL = process.env.PUBLIC_URL;
+const cloudinary = require("../utils/handleCloudinary");
 
-const updateImage = async (req, res) => {
+
+const updatePerfilImage = async (req, res) => {
   try {
-    //!ESTABLEZCO NOMBRE Y URL PARA LA IMAGEN SUBIDA
-    const { file } = req;
-    const fileData = {
-      filename: file.filename,
-      url: `${PUBLIC_URL}/${file.filename}`,
-    };
+    //!REQUIERO IMAGEN
+    if (!req.file.path) {
+      return res.send("Seleccione imagen");
+    }
+
+    //!SUBO IMAGEN
+    const fileData = await cloudinary.uploader.upload(req.file.path);
 
     //!DECODIFICO TOKEN
     const token = req.headers.authorization.split(" ").pop();
@@ -26,15 +26,12 @@ const updateImage = async (req, res) => {
     if (user) {
       //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
       if (user.profileimage.filename !== "defaultimage") {
-        const filePath = path.join(
-          `${__dirname}/../images/uploads/${user.profileimage.filename}`
-        );
-        fs.unlinkSync(filePath);
+        cloudinary.v2.uploader.destroy(user.profileimage.filename);
       }
 
       //!ACTUALIZO IMAGEN DEL USER
       user.profileimage.url = fileData.url;
-      user.profileimage.filename = fileData.filename;
+      user.profileimage.filename = fileData.public_id;
       await user.save();
 
       //!RESPUESTA
@@ -42,15 +39,12 @@ const updateImage = async (req, res) => {
     } else if (seller) {
       //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
       if (seller.profileimage.filename !== "defaultimage") {
-        const filePath = path.join(
-          `${__dirname}/../images/uploads/${seller.profileimage.filename}`
-        );
-        fs.unlinkSync(filePath);
+        cloudinary.v2.uploader.destroy(seller.profileimage.filename);
       }
 
-      //!ACTUALIZO IMAGEN DEL USER
+      //!ACTUALIZO IMAGEN DEL SELLER
       seller.profileimage.url = fileData.url;
-      seller.profileimage.filename = fileData.filename;
+      seller.profileimage.filename = fileData.public_id;
       await seller.save();
 
       //!RESPUESTA
@@ -61,7 +55,7 @@ const updateImage = async (req, res) => {
   }
 };
 
-const deleteImage = async (req, res) => {
+const deletePerfilImage = async (req, res) => {
   try {
     //!BUSCO USER/SELLER
     const { id } = matchedData(req);
@@ -69,11 +63,12 @@ const deleteImage = async (req, res) => {
     const seller = await sellersModel.findById(id);
 
     if (user) {
+      if(user.profileimage.filename === "defaultimage") {
+        res.send("No hay nada que borrar")
+        return
+      }
       //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
-      const filePath = path.join(
-        `${__dirname}/../images/uploads/${user.profileimage.filename}`
-      );
-      fs.unlinkSync(filePath);
+      cloudinary.v2.uploader.destroy(user.profileimage.filename);
 
       //!ESTABLEZCO IMAGEN POR DEFECTO
       user.profileimage.url =
@@ -84,11 +79,12 @@ const deleteImage = async (req, res) => {
       //!RESPUESTA
       res.send("Imagen borrada correctamente");
     } else {
+      if(seller.profileimage.filename === "defaultimage") {
+        res.send("No hay nada que borrar")
+        return
+      }
       //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
-      const filePath = path.join(
-        `${__dirname}/../images/uploads/${seller.profileimage.filename}`
-      );
-      fs.unlinkSync(filePath);
+      cloudinary.v2.uploader.destroy(seller.profileimage.filename);
 
       //!ESTABLEZCO IMAGEN POR DEFECTO
       seller.profileimage.url =
@@ -105,6 +101,6 @@ const deleteImage = async (req, res) => {
 };
 
 module.exports = {
-  updateImage,
-  deleteImage,
+  updatePerfilImage,
+  deletePerfilImage,
 };

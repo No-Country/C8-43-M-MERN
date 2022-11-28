@@ -38,12 +38,6 @@ const SellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    birthdate: {
-      type: Date,
-      min: "2004-11-17",
-      default: Date.now,
-      required: true,
-    },
     sex: {
       type: ["female", "male", "unspecified"],
       default: "unspecified",
@@ -59,7 +53,7 @@ const SellerSchema = new mongoose.Schema(
     },
     products: [{
       type: Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "products",
     }]
   },
   { timestamps: true, versionKey: false }
