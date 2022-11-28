@@ -2,7 +2,11 @@ const { usersModel, sellersModel } = require("../models");
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../utils/handleError");
 const { getToken, getTokenData } = require("../config/jwt");
-const { sendEmail, getTemplate } = require("../config/nodemailer");
+const {
+  sendEmail,
+  getTemplate,
+  getTemplateReset,
+} = require("../config/nodemailer");
 const { encrypt, compare } = require("../utils/handlePassword");
 const path = require("path");
 
@@ -194,8 +198,140 @@ const login = async (req, res) => {
       return;
     }
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_LOGIN_USER");
+  }
+};
+
+const sendEmailReset = async (req, res) => {
+  try {
+    //!VERIFICO SI EL USUARIO(EMAIL) EXISTE
+    const user = await usersModel.findOne({ email: req.body.email });
+    const seller = await sellersModel.findOne({ email: req.body.email });
+
+    if (seller) {
+      //!GENERAR EL TOKEN
+      const token = {
+        token: await getToken(seller),
+        seller,
+      };
+
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplateReset(
+        seller._id.toString(),
+        seller.name,
+        token
+      );
+
+      //!ENVIAR EMAIL DE CONFIRMACION
+      await sendEmail(seller.email, "Restaurar contraseña", template);
+
+      //!RESPUESTA
+      res.send("Email enviado correctamente");
+    } else if (user) {
+      //!GENERAR EL TOKEN
+      const token = {
+        token: await getToken(user),
+        user,
+      };
+
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplateReset(user._id.toString(), user.name, token);
+
+      //!ENVIAR EMAIL DE CONFIRMACION
+      await sendEmail(user.email, "Restaurar contraseña", template);
+
+      //!RESPUESTA
+      res.send("Email enviado correctamente");
+    } else {
+      handleHttpError(res, "USER_NOT_EXIST", 404);
+      return;
+    }
+  } catch (error) {
+    handleHttpError(res, "ERROR_SEND_EMAIL_TO_RESET_PASSWORD");
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+
+    //!VERIFICO SI EL USUARIO(EMAIL) EXISTE
+    const user = await usersModel.findById(id);
+    const seller = await sellersModel.findById(id);
+
+    if (seller) {
+      //!VERIFICO QUE EL TOKEN SEA EL CORRECTO
+      await getTokenData(token);
+
+      //!RESPUESTA
+      res.send("Datos verificados correctamente");
+    } else if (user) {
+      //!VERIFICO QUE EL TOKEN SEA EL CORRECTO
+      await getTokenData(token);
+
+      //!RESPUESTA
+      res.send("Datos verificados correctamente");
+    } else {
+      handleHttpError(res, "USER_NOT_EXIST", 404);
+      return;
+    }
+  } catch (error) {
+    handleHttpError(res, "ERROR_TO_VERIFY_PASSWORD");
+  }
+};
+
+const resetPasswordForm = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+    const { password, passwordRepeat } = req.body;
+
+    //!VERIFICO TOKEN
+    let data = getTokenData(token);
+    if (!data) {
+      handleHttpError(res, "ERROR_NOT_DATA", 404);
+      return;
+    }
+
+    //!VERIFICO ID
+    const userExist = (await usersModel.findById(id)) || null;
+    const sellerExist = (await sellersModel.findById(id)) || null;
+
+    if (userExist === null && sellerExist === null) {
+      handleHttpError(res, "USER_NOT_EXIST", 404);
+      return;
+    }
+
+    //! VERIFICO QUE EL USUARIO EXISTA(DESDE EL TOKEN)
+    let user = await usersModel.findOne({ email: data.email });
+    let seller = await sellersModel.findOne({ email: data.email });
+
+    if (seller) {
+      //!VERIFICO CONTRASEÑAS
+      if (password !== passwordRepeat) {
+        handleHttpError(res, "ERROR_VERIFY_PASSWORD");
+        return;
+      }
+      //!CAMBIO CONTRASEÑA
+      seller.password = await encrypt(password);
+      await seller.save();
+
+      //!RESPUESTA
+      res.send(seller);
+    } else {
+      //!VERIFICO CONTRASEÑAS
+      if (password !== passwordRepeat) {
+        handleHttpError(res, "ERROR_VERIFY_PASSWORD");
+        return;
+      }
+      //!CAMBIO CONTRASEÑA
+      user.password = await encrypt(password);
+      await user.save();
+
+      //!RESPUESTA
+      res.send(user);
+    }
+  } catch (error) {
+    handleHttpError(res, "ERROR_RESTORE_PASSWORD");
   }
 };
 
@@ -203,4 +339,7 @@ module.exports = {
   signUp,
   confirmEmail,
   login,
+  sendEmailReset,
+  resetPassword,
+  resetPasswordForm,
 };
