@@ -54,7 +54,7 @@ export default function Designer({ data }) {
               <Link href={`${_id}`} className={styles.container} key={_id}>
                 {/* Card */}
                 <Image
-                  src={image ? image[0] : ''}
+                  src={image.url}
                   alt="No hay imagen!"
                   width="800"
                   height="800"
@@ -75,7 +75,7 @@ export default function Designer({ data }) {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://localhost:4000/products/all");
+    const res = await fetch("http://localhost:3001/products/all");
     const data = await res.json();
     console.log(data);
     return {

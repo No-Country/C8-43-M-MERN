@@ -12,7 +12,7 @@ function about() {
                     <link rel="icon" href="/img/logo4.png" />
                 </Head>
 
-                <section className="mt-[80px] mx-[250px] flex flex-col items-center justify-center max-w-[1024px] mx-auto">
+                <section className="mt-[80px] mx-[250px] flex flex-col items-center justify-center max-w-[1024px]">
 
                     <article className="flex flex-col  items-center w-full ">
                         <header className="col-span-2 mb-[30px] self-start ml-32">
@@ -123,7 +123,7 @@ function about() {
                 </section>
 
                 <section className="bg-[#D9D9D9] pb-[50px]">
-                    <article className="mx-[250px] flex flex-col max-w-[1024px] mx-auto">
+                    <article className="mx-[250px] flex flex-col max-w-[1024px]">
                         <header className="mb-[30px] pt-[23px] self-start ml-32">
                             <h3 className="font-medium text-2xl">Nuestro equipo</h3>
                         </header>
