@@ -1,0 +1,43 @@
+.container{
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+  margin-bottom: 100px;
+  width: 20%;
+  
+}
+.text{
+  position: absolute;
+  top: 80%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  color: #F4F0BB;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.icon{
+  position: absolute;
+  top: 60%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: #F4F0BB;
+  font-size: 48px;
+  font-weight: bold;
+}
+.circleBlack {
+  background: #000;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 50px;
+  margin-top: 4px;
+}
+.circleGreen {
+  background: #87C38F;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  margin-top: 4px;
+}
