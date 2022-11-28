@@ -18,11 +18,11 @@ const sendEmail = async (email, subject, html) => {
       from: `Valen <${VALEN_USER}>`,
       to: email,
       subject,
-      text: "Hello world?",
+      text: "Prueba",
       html,
     });
   } catch (error) {
-    console.log("ERROR_SEND_EMAIL", error);
+    console.log("ERROR_SEND_EMAIL", error)
   }
 };
 
@@ -39,7 +39,21 @@ const getTemplate = (name, token) => {
     `;
 };
 
+const getTemplateReset = (id, name, token) => {
+  return `
+      <div id="email___content">
+          <h2>Hola ${name}</h2>
+          <p>Para restaurar tu contraseña, ingrese al siguiente enlace</p>
+          <a
+              href="${process.env.PUBLIC_URL}/auth/resetpassword/${id}/${token.token}"
+              target="_blank"
+          >Restaurar Contraseña</a>
+      </div>
+    `;
+};
+
 module.exports = {
   sendEmail,
   getTemplate,
+  getTemplateReset,
 };
