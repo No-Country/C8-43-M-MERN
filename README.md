@@ -3,12 +3,11 @@
 ## Backend :
 
 * ### Camila Parada Valderrama
-* ### Iván Chanenko
 * ### Braian Aguada
 
 ## Frontend :
 
-* ### Karina Ramírez
+* ### Fabian Cruz
 * ### Gonzalo Barra
 * ### Ariel Martinez
 
@@ -23,4 +22,5 @@
 ## Diseñador UX/UI :
 
 * ### Exequiel Robles Vega
+* ### Gerard Vargas
 
