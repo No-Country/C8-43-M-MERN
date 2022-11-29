@@ -1,26 +1,19 @@
 import React from "react";
 import { signUser } from "../lib/signin";
 
-class SigninForm extends React.Component {
-  state = {
-    name: "",
-    lastname: "",
-    email: "",
-    password: "",
-    role: "",
-    sex: "",
+const SigninForm =  () =>{
+  const [ name, setName] = useState({name: "", lastname: "", email: "", password: "", role: "", sex: "",})
+  
+  const handleChange = (e) => {
+    setName({ ...name, [e.target.name]: e.target.value });
   };
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleSubmit = (event) => {
-    const {name, lastname, email, password, role, sex} = this.state;
-    event.preventDefault();
+  handleSubmit = (e) => {
+    const {name, lastname, email, password, role, sex} = name;
+    e.preventDefault();
     signUser(name, lastname, email, password, role, sex);
   };
-  render() {
+  
     return (
       <div>
         <div className="bg-[#1B5B45] grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[0.2fr_1fr_0.2fr_1fr]  gap-4 h-screen place-items-center">
@@ -33,7 +26,7 @@ class SigninForm extends React.Component {
           />
           <form
             className="col-start-2 col-end-4 row-start-2 "
-            onSubmit={this.handleSubmit}
+            onSubmit={handleSubmit}
           >
             <div className="formulario__nombre flex justify-between items-center m-0 ">
               <div className="m-0 py-4">
@@ -44,7 +37,7 @@ class SigninForm extends React.Component {
                   type="text"
                   name="name"
                   required
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
 
                 <br />
@@ -59,7 +52,7 @@ class SigninForm extends React.Component {
                   type="text"
                   name="lastname"
                   required
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
                 <br />
               </div>
@@ -72,7 +65,7 @@ class SigninForm extends React.Component {
                 type="email"
                 name="email"
                 required
-                onChange={this.handleChange}
+                onChange={handleChange}
               />
               <br />
             </div>
@@ -86,7 +79,7 @@ class SigninForm extends React.Component {
                   type="password"
                   name="password"
                   required
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
                 <br />
               </div>
@@ -141,7 +134,7 @@ class SigninForm extends React.Component {
                 type="checkbox"
                 name="role"
                 value="seller"
-                onChange={this.handleChange}
+                onChange={handleChange}
               />
               <label htmlFor="role">seller</label>
               <br />
@@ -149,7 +142,7 @@ class SigninForm extends React.Component {
                 type="checkbox"
                 name="role"
                 value="seller"
-                onChange={this.handleChange}
+                onChange={handleChange}
               />
               <label htmlFor="role">user</label>
               <br />
@@ -159,7 +152,7 @@ class SigninForm extends React.Component {
                 type="checkbox"
                 name="sex"
                 value="male"
-                onChange={this.handleChange}
+                onChange={handleChange}
               />
               <label htmlFor="male">Male</label>
               <br />
@@ -167,7 +160,7 @@ class SigninForm extends React.Component {
                 type="checkbox"
                 name="sex"
                 value="female"
-                onChange={this.handleChange}
+                onChange={handleChange}
               />
               <label htmlFor="female">Female</label>
               <br />
@@ -185,6 +178,5 @@ class SigninForm extends React.Component {
       </div>
     );
   }
-}
 
 export default SigninForm;
