@@ -4,13 +4,26 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import styles from "./../styles/home.module.css";
-import { ImStarEmpty } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
 import { Avatar, Button } from "@nextui-org/react";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Home({ data }) {
+  const [product, setProduct] = useState([]);
+  console.log(product);
 
-  
+  const handleChange = (e) => {
+    searchProduct(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const searchProduct = async (name) => {
+    const res = await axios.get("https://c8-43-m-mern-jky7pp7ex-valennc.vercel.app/products?name=" + name);
+    console.log(res);
+    setProduct(res.data);
+  };
+
   return (
     <Layout>
       <div>
@@ -56,8 +69,9 @@ export default function Home({ data }) {
                     </svg>
                   </div>
                   <input
-                    type="search"
+                    type="text"
                     id="default-search"
+                    onChange={handleChange}
                     className="block w-full p-2 pl-16 text-lg text-green-800 border border-gray-300 rounded-xl bg-yellow-100 focus:ring-green-800 focus:border-green-800 "
                     placeholder="Buscar..."
                     required
@@ -65,58 +79,143 @@ export default function Home({ data }) {
                 </div>
               </form>
             </div>
-            <div className="flex gap-8 ml-36 mb-8">
-              <div>
-                <Avatar
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                  color="gradient"
-                  bordered
-                  css={{ size: "$20" }}
-                />
-              </div>
-              <div className="flex flex-col mx-4">
-                <h3 className="text-xl font-semibold">Maxi Man</h3>
-                <Button shadow color="success" size="sm" auto>
-                  Seguir
-                </Button>
-              </div>
-            </div>
-            <div className="flex mx-16">
-              {data.slice(0, 3).map(({ price, image, _id , seller}) => (
-                <div className={styles.container} key={_id}>
-                  
-                  {/* Card */}
+            <div className="flex gap-32 mb-32 mx-16 justify-center">
+              {product.map(({ name, color, description, image, price }) => (
+                <div>
+                  <h4>{name}</h4>
                   <Image
                     src={image.url}
                     alt="photo"
-                    width="800"
-                    height="800"
-                    className="w-96 h-72"
+                    width="900"
+                    height="900"
+                    className="w-32 h-32 rounded-full"
                   />
-                  <div className={styles.icon}>
-                    <ImStarEmpty />
-                  </div>
-                  <div className={styles.text}>{price}</div>
-                  <div className="flex mt-2">
-                    <div className={styles.circleBlack}></div>
-                    <div className={styles.circleGreen}></div>
-                    <div className="ml-32">
-                      <p className="text-gray-700 text-base font-semibold">
-                        Xxl-Xl-L
-                      </p>
-                    </div>
-                  
-                  </div>
-                  
+                  <h2 className="text-yellow-600">${price}</h2>
+                  <p className="flex text-lg"> {description}  {color === "Celeste" ? (
+                                <div className={styles.circleSky}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Purpura" ? (
+                                <div className={styles.circlePurple}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Marron" ? (
+                                <div className={styles.circleBrown}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Blanco, Negro" ? (
+                                <div className={styles.circleBlack}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Rosa, Negro" ? (
+                                <div className="flex space-x-2">
+                                  <div className={styles.circlePink}></div>{" "}
+                                  <div className={styles.circleBlack}></div>
+                                </div>
+                              ) : (
+                                ""
+                              )}</p>
+                
                 </div>
               ))}
-              <Link
-                href="/designer"
-                className="flex flex-col ml-16 text-green-800 hover:text-green-600"
-              >
-                <IoIosArrowForward className="text-4xl mt-16" />
-                <span className="text-xl">Ver más</span>
-              </Link>
+            </div>
+            <div className="flex flex-col mx-16 z-0 gap-12">
+              {data.map(({ _id, products, name, lastname, profileimage }) => (
+                <div className="flex gap-8">
+                  <div className="mx-32" key={_id}>
+                    <div className="flex gap-8 mb-8 z-0">
+                      <div className="z-0">
+                        <Avatar
+                          src={profileimage.url}
+                          color="success"
+                          bordered
+                          css={{ size: "$20" }}
+                        />
+                      </div>
+                      <div className="flex flex-col mx-8">
+                        <h3 className="text-xl font-semibold">
+                          {name + " " + lastname}
+                        </h3>
+                        <Button
+                          className="z-0"
+                          shadow
+                          color="success"
+                          size="sm"
+                          auto
+                        >
+                          Seguir
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex gap-8 mb-32">
+                      {products
+                        .slice(0, 3)
+                        .map(({ image, sizes, color }) => (
+                          <div>
+                            <div>
+                              <Image
+                                src={image.url}
+                                alt="photo"
+                                width="900"
+                                height="900"
+                                className="w-72 h-72"
+                              />
+                            </div>
+                            <div className="flex mt-2">
+                              {color === "Celeste" ? (
+                                <div className={styles.circleSky}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Purpura" ? (
+                                <div className={styles.circlePurple}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Marron" ? (
+                                <div className={styles.circleBrown}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Blanco, Negro" ? (
+                                <div className={styles.circleBlack}></div>
+                              ) : (
+                                ""
+                              )}
+                              {color === "Rosa, Negro" ? (
+                                <div className="flex space-x-2">
+                                  <div className={styles.circlePink}></div>{" "}
+                                  <div className={styles.circleBlack}></div>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+
+                              <div>
+                                <p className=" text-gray-700 text-lg font-semibold ml-16">
+                                  {sizes}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                  <div>
+                    <Link
+                      href="/designer"
+                      className="flex flex-col mt-32 text-green-800 hover:text-green-600"
+                    >
+                      <IoIosArrowForward className="text-4xl mt-16" />
+                      <span className="text-xl">Ver más</span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -127,7 +226,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://localhost:3001/products/all");
+    const res = await fetch("https://c8-43-m-mern-jky7pp7ex-valennc.vercel.app/products/sellers");
     const data = await res.json();
     console.log(data);
     return {
@@ -139,4 +238,3 @@ export async function getStaticProps() {
     console.log(error);
   }
 }
-
