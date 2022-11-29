@@ -1,10 +1,9 @@
 .container{
   position: relative;
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 500px;
   margin-bottom: 100px;
   width: 20%;
-  
 }
 .text{
   position: absolute;
@@ -39,5 +38,37 @@
   width: 15px;
   height: 15px;
   margin-left: 10px;
+  margin-top: 4px;
+}
+.circleSky {
+  background: #08f0f0;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 50px;
+  margin-top: 4px;
+}
+.circlePurple {
+  background: #ca1f94;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 50px;
+  margin-top: 4px;
+}
+.circleBrown {
+  background: #b38471;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 50px;
+  margin-top: 4px;
+}
+.circlePink {
+  background: #ffa9e9;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 50px;
   margin-top: 4px;
 }

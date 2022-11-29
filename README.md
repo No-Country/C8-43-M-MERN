@@ -2,14 +2,13 @@
 
 ## Backend :
 
-* ### Camila Parada Valderrama
 * ### Braian Aguada
 
 ## Frontend :
 
-* ### Fabian Cruz
 * ### Gonzalo Barra
 * ### Ariel Martinez
+* ### Fabian Cruz
 
 ## Fullstack :
 
