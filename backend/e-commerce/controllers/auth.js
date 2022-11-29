@@ -184,7 +184,7 @@ const login = async (req, res) => {
 
       //!OCULTO EL PASSWORD
       seller.set("password", undefined, { strict: false });
-
+    
       //!GENERO TOKEN DE SESION
       const data = {
         token: await getToken(seller),

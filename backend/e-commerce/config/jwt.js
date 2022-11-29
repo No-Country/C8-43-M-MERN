@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const SECRET_WORD = process.env.SECRET_WORD;
 const { handleHttpError } = require("../utils/handleError");
 
-const getToken = async (user) => {
+const  getToken = async (user) => {
   const sign = await jwt.sign(
     {
       //!TOKENIZO ESTAS 3 PROPIEDADES
@@ -13,6 +13,7 @@ const getToken = async (user) => {
     SECRET_WORD,
     { expiresIn: "2h" }
   );
+
   return sign;
 };
 
