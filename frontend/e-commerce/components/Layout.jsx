@@ -39,7 +39,7 @@ export default function Layout({ children }) {
                 </li>
                 <li>
                   <Link
-                    href="/sobre-nosotros"
+                    href="/about"
                     className="block py-2 pl-3 pr-4 text-white text-lg  md:p-0 "
                     aria-current="page"
                   >
@@ -48,7 +48,7 @@ export default function Layout({ children }) {
                 </li>
                 <li>
                   <Link
-                    href="/ayuda"
+                    href="/contact"
                     className="block py-2 pl-3 pr-4 text-white text-lg hover:bg-gray-100 md:hover:bg-transparent md:p-0 "
                   >
                     Ayuda

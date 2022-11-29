@@ -13,7 +13,7 @@ function contact() {
                     <link rel="icon" href="/img/logo4.png" />
                 </Head>
 
-                <section className="mx-[250px] my-[80px] max-w-[1024px] mx-auto">
+                <section className="mx-[250px] my-[80px] max-w-[1024px]">
 
                     <header>
                         <h3 className="font-normal text-[30px]">Ayuda/Contacto</h3>
@@ -82,9 +82,9 @@ function contact() {
 
                 </section>
 
-                <hr className="mx-[250px] max-w-[1024px] mx-auto" />
+                <hr className="mx-[250px] max-w-[1024px]" />
 
-                <section className="mx-[250px] max-w-[1024px] mx-auto">
+                <section className="mx-[250px] max-w-[1024px]">
 
                     <article className="mt-[50px]">
                         <header className="mb-[15px]">
@@ -347,7 +347,7 @@ function contact() {
 
                 </section>
 
-                <section className="mx-[250px] mt-[60px] mb-[215px] max-w-[1024px] mx-auto">
+                <section className="mx-[250px] mt-[60px] mb-[215px] max-w-[1024px]">
                     <form action="" className="flex flex-col gap-[15px]">
                         <div>
                             <label htmlFor="name/lastname">Nombre y apellido</label>
@@ -370,7 +370,7 @@ function contact() {
                 </section>
 
                 <section className="bg-[#D9D9D9] pb-[50px]">
-                    <article className="mx-[250px] flex flex-col max-w-[1024px] mx-auto">
+                    <article className="mx-[250px] flex flex-col max-w-[1024px]">
                         <header className="mb-[30px] pt-[23px] self-start ">
                             <h3 className="font-medium text-2xl">Nuestro equipo</h3>
                         </header>
