@@ -1,20 +1,19 @@
 const nodemailer = require("nodemailer");
-const VALEN_USER = process.env.VALEN_USER;
-const VALEN_PASS = process.env.VALEN_PASS;
 
 let transporter = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 2525,
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure: true,
   auth: {
-    user: VALEN_USER,
-    pass: VALEN_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
 const sendEmail = async (email, subject, html) => {
   try {
     await transporter.sendMail({
-      from: `Valen <${VALEN_USER}>`,
+      from: `Valen <${process.env.EMAIL_USER}>`,
       to: email,
       subject,
       text: "Prueba",
@@ -31,7 +30,7 @@ const getTemplate = (name, token) => {
           <h2>Hola ${name}</h2>
           <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
           <a
-              href="${process.env.PUBLIC_URL}/auth/confirm/${token.token}"
+              href="https://c8-43-m-mern-bmq8wfj1n-valennc.vercel.app/auth/confirm/${token.token}"
               target="_blank"
           >Confirmar Cuenta</a>
       </div>
@@ -44,7 +43,7 @@ const getTemplateReset = (id, name, token) => {
           <h2>Hola ${name}</h2>
           <p>Para restaurar tu contraseña, ingrese al siguiente enlace</p>
           <a
-              href="${process.env.PUBLIC_URL}/auth/resetpassword/${id}/${token.token}"
+              href="https://c8-43-m-mern-bmq8wfj1n-valennc.vercel.app/auth/resetpassword/${id}/${token.token}"
               target="_blank"
           >Restaurar Contraseña</a>
       </div>
