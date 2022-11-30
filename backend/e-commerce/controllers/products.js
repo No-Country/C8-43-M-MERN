@@ -23,7 +23,7 @@ const getSellers = async (req, res) => {
 const getProduct = async (req, res) => {
   try {
     const { id } = matchedData(req);
-    const data = await productsModel.findById(id);
+    const data = await productsModel.findById(id).populate("seller");
     res.send(data);
   } catch (error) {
     handleHttpError(res, "ERROR_GET_PRODUCT");
