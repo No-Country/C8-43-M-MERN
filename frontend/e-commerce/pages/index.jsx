@@ -3,12 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
+
 import styles from "./../styles/home.module.css";
 import { ImStarEmpty } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
 import { Avatar, Button } from "@nextui-org/react";
 
+
+
 export default function Home({ data }) {
+
+
   return (
     <Layout>
       <div>

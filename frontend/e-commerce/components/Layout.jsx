@@ -1,9 +1,26 @@
 import { Avatar } from "@nextui-org/react";
 import Link from "next/link";
+import  LoginForm from '../components/LoginForm'
+
+
+
+
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+}
 
 
 export default function Layout({ children }) {
+  const token = getToken();
+  if(!token) {
+    return <LoginForm setToken={setToken} />
+  }
+
   return (
+   
     <div>
       <nav className="bg-[#1B5B45] sm:px-4 fixed w-full z-20 top-0 left-0 border-b-2 border-yellow-100">
         <div className="container flex flex-wrap items-center mx-auto">
@@ -53,6 +70,10 @@ export default function Layout({ children }) {
                   >
                     Ayuda
                   </Link>
+
+                
+
+            
                 </li>
               </ul>
             </div>

@@ -1,17 +1,28 @@
-import React from "react";
-import { loginUser } from "../lib/login";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const LoginForm = () => {
-  const [name, setName] = useState({ email: "", password: "" });
+async function loginUser(credentials) {
+  return fetch("http://localhost:4000/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
 
-  const handleChange = (event) => {
-    setName({ ...name, [event.target.name]: event.target.value });
-  };
+export default function LoginForm({setToken})  {
 
-  const handleSubmit = (e) => {
-    const { email, password } = name;
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginUser(email, password);
+    const token = await loginUser({
+      email,
+      password,
+    });
+    setToken(token);
   };
 
   return (
@@ -33,7 +44,7 @@ const LoginForm = () => {
             className="bg-[#F4F0BB] rounded-md"
             type="email"
             name="email"
-            onChange={handleChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <br />
@@ -48,7 +59,7 @@ const LoginForm = () => {
             className="bg-[#F4F0BB] rounded-md"
             type="password"
             name="password"
-            onChange={handleChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <br />
         </div>
@@ -68,4 +79,7 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
+
