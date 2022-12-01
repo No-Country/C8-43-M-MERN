@@ -1,4 +1,4 @@
-const { productsModel } = require("../models");
+const { sellersModel, productsModel } = require("../models");
 const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
 
@@ -11,10 +11,19 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getSellers = async (req, res) => {
+  try {
+    const data = await sellersModel.find().populate("products")
+    res.send(data);
+  } catch (error) {
+    handleHttpError(res, "ERROR_GET_PRODUCTS");
+  }
+};
+
 const getProduct = async (req, res) => {
   try {
     const { id } = matchedData(req);
-    const data = await productsModel.findById(id);
+    const data = await productsModel.findById(id).populate("seller");
     res.send(data);
   } catch (error) {
     handleHttpError(res, "ERROR_GET_PRODUCT");
@@ -34,6 +43,7 @@ const getProductSearch = async (req, res) => {
 
 module.exports = {
   getProducts,
+  getSellers,
   getProduct,
   getProductSearch,
 };

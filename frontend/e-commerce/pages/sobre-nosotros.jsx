@@ -14,6 +14,7 @@ function about() {
 
                 <section className="mt-[140px] flex flex-col items-center justify-center w-[95%]  max-w-[1024px] mx-auto">
 
+
                     <article className="flex flex-col items-center">
                         <header className="col-span-2 mb-[30px] self-start mx-auto md:ml-0  ">
                             <p className="font-medium text-2xl ">Nuestra Mision</p>
@@ -122,10 +123,12 @@ function about() {
 
                 </section>
 
+
                 <section className="bg-[#1B5B45] pb-[50px]">
                     <article className="flex flex-col max-w-[1024px] mx-auto w-[95%]">
                         <header className="mb-[30px] pt-[23px] self-start ">
                             <h3 className="font-medium text-2xl text-[#F4F0BB]">Nuestro equipo</h3>
+
                         </header>
                         <div className="">
                             <ul className="flex min-[375px]:flex-wrap gap-[20px] m-0 justify-between text-[#F4F0BB]">
@@ -172,7 +175,7 @@ function about() {
                                     <div className="flex flex-col gap-2">
                                         <div>
                                             <p className="font-normal">Gerlo Daniela</p>
-                                            <p className="font-normal">Link linkedin</p>
+                                            <a target={'_blank'} href='https://linkedin.com/in/daniela-gerlo' className="font-normal text-[#F4F0BB]">Link linkedin</a>
                                         </div>
                                     </div>
                                 </li>

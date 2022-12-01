@@ -4,7 +4,7 @@ const ProductSchema = new mongoose.Schema(
   {
     seller: {
       type: Schema.Types.ObjectId,
-      ref: "Seller",
+      ref: "sellers",
     },
     name: {
       type: String,
@@ -26,6 +26,16 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      url: {
+        type: String,
+        require: true,
+      },
+      filename: {
+        type: String,
+        require: true,
+      },
+    },
     description: {
       type: String,
       required: true,
@@ -34,4 +44,4 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-module.exports = mongoose.model("Product", ProductSchema, "products");
+module.exports = mongoose.model("products", ProductSchema);
