@@ -67,7 +67,6 @@ const signUp = async (req, res) => {
       res.send("Registro exitoso");
     }
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_SIGNUP_USER_SELLER");
   }
 };

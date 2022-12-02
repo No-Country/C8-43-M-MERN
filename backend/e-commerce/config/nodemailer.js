@@ -11,7 +11,6 @@ const sendEmail = async (email, subject, html) => {
   };
   try {
     await sendGrid.send(messageData)
-    console.log("Email enviado");
   } catch (error) {
     console.log(error);
   }
