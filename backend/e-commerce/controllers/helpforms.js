@@ -39,7 +39,6 @@ const sendQuestion = async (req, res) => {
       return;
     }
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_SEND_QUESTION");
   }
 };
