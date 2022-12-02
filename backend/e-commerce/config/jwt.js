@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const SECRET_WORD = process.env.SECRET_WORD;
-const { handleHttpError } = require("../utils/handleError");
 
 const getToken = async (user) => {
   const sign = await jwt.sign(
@@ -16,8 +15,6 @@ const getToken = async (user) => {
   return sign;
 };
 
-
-
 const getTokenData = (token) => {
   let data = null;
   jwt.verify(token, SECRET_WORD, (err, decoded) => {
@@ -29,8 +26,6 @@ const getTokenData = (token) => {
   });
   return data;
 };
-
-
 
 module.exports = {
   getToken,
