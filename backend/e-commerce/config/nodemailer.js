@@ -36,7 +36,7 @@ const getTemplateReset = (id, name, token) => {
           <h2>Hola ${name}</h2>
           <p>Para restaurar tu contraseña, ingrese al siguiente enlace</p>
           <a
-              href="${process.env.PUBLIC_URL}/auth/resetpassword/${id}/${token.token}"
+              href="https://c8-43-m-mern-api.vercel.app/auth/resetpassword/${id}/${token.token}"
               target="_blank"
           >Restaurar Contraseña</a>
       </div>
