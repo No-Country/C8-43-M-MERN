@@ -10,20 +10,21 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    color: {
+    color: [{
       type: String,
       required: true,
-    },
-    category: {
+    }],
+    category: [{
       type: String,
       required: true,
-    },
+    }],
     sizes: {
-      type: String,
+      type: ["xs", "s", "m", "l", "xl", "xxl", "unspecified"],
+      default: "unspecified",
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     image: {
