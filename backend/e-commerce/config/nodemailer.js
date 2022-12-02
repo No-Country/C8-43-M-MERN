@@ -1,26 +1,19 @@
-const nodemailer = require("nodemailer");
-
-let transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
-
+const sendGrid = require("@sendgrid/mail");
+sendGrid.setApiKey(process.env.SENDGRID_TOKEN);
 
 const sendEmail = async (email, subject, html) => {
+  const messageData = {
+    to: email,
+    from: `${process.env.EMAIL_USER}`,
+    subject,
+    text: "Prueba",
+    html,
+  };
   try {
-    await transporter.sendMail({
-      from: `Valen <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject,
-      text: "Prueba",
-      html,
-    });
+    await sendGrid.send(messageData)
+    console.log("Email enviado");
   } catch (error) {
-    console.log("ERROR_SEND_EMAIL", error)
+    console.log(error);
   }
 };
 
