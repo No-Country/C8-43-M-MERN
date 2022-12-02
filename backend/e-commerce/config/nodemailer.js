@@ -16,6 +16,21 @@ const sendEmail = async (email, subject, html) => {
   }
 };
 
+const sendHelpFormEmail = async (email, subject, html) => {
+  const messageData = {
+    to: `${process.env.EMAIL_USER}`,
+    from: `${process.env.EMAIL_USER}`,
+    subject,
+    text: "Prueba",
+    html,
+  };
+  try {
+    await sendGrid.send(messageData)
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getTemplate = (name, token) => {
   return `
       <div id="email___content">
@@ -42,8 +57,19 @@ const getTemplateReset = (id, name, token) => {
     `;
 };
 
+const getTemplateHelpForm = (name, lastname, description, email) => {
+  return `
+      <div id="email___content">
+          <h2>Consulta para administradores de: ${email}</h2>
+          <p>${name} ${lastname} dice: ${description}</p>
+      </div>
+    `;
+};
+
 module.exports = {
   sendEmail,
+  sendHelpFormEmail,
   getTemplate,
   getTemplateReset,
+  getTemplateHelpForm
 };
