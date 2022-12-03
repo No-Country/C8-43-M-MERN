@@ -8,13 +8,17 @@ import styles from "./../styles/home.module.css";
 import { ImStarEmpty } from "react-icons/im";
 import { IoIosArrowForward } from "react-icons/io";
 import { Avatar, Button } from "@nextui-org/react";
+import { useState } from 'react'
+import { useSession } from "next-auth/react"
 
 
 
 export default function Home({ data }) {
 
+  const { data: session } = useSession()
 
   return (
+    
     <Layout>
       <div>
         <Head>
@@ -71,12 +75,7 @@ export default function Home({ data }) {
             </div>
             <div className="flex gap-8 ml-36 mb-8">
               <div>
-                <Avatar
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                  color="gradient"
-                  bordered
-                  css={{ size: "$20" }}
-                />
+               
               </div>
               <div className="flex flex-col mx-4">
                 <h3 className="text-xl font-semibold">Maxi Man</h3>
@@ -122,7 +121,10 @@ export default function Home({ data }) {
           </div>
         </section>
       </div>
-    </Layout>
+        
+      </Layout>
+
+
   );
 }
 
