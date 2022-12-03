@@ -1,7 +1,6 @@
-import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Home.module.css";
+import styles from "./../../styles/Designer.module.css";
 import Link from "next/link";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaBehance } from "react-icons/fa";
@@ -11,7 +10,7 @@ export default function Designer({ data }) {
     <Layout>
       <div className="mx-64 mt-60">
         <div>
-          <main className="flex">
+          <main className="flex" key={data._id}>
             <Image
               src={data.profileimage.url}
               width="200"
