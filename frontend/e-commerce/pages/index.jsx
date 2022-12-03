@@ -126,7 +126,7 @@ export default function Home({ data }) {
             </div>
             <div className="flex flex-col mx-16 z-0 gap-12">
               {data.map(({ _id, products, name, lastname, profileimage }) => (
-                <div className="flex gap-8">
+                <div className="flex gap-8" key={_id}>
                   <div className="mx-32">
                     <div className="flex gap-8 mb-8 z-0">
                       <div className="z-0">
@@ -149,8 +149,8 @@ export default function Home({ data }) {
                       </div>
                     </div>
                     <div className="flex gap-8 mb-32">
-                      {products.slice(0, 3).map(({ image, sizes, color }) => (
-                        <div>
+                      {products.slice(0, 3).map(({_id, image, sizes, color }) => (
+                        <div key={_id}>
                           <div>
                             <Image
                               src={image.url}

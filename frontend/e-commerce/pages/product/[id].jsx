@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Home.module.css";
+import styles from "./../../styles/Product.module.css";
 import { useState } from "react";
 
 export default function Product({ data }) {
