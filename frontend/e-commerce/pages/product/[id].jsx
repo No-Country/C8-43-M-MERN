@@ -148,7 +148,7 @@ export default function Product({ data }) {
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://localhost:3001/products/all");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/all");
     const data = await res.json();
     const paths = data.map(({ _id }) => ({ params: { id: `${_id}` } }));
     return {
@@ -162,7 +162,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("http://localhost:3001/products/" + params.id);
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/" + params.id);
     const data = await res.json();
     return {
       props: {

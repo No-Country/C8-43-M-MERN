@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Layout({ children }) {
   return (
     <div>
-      <nav className="bg-[#1B5B45] fixed w-full z-20 top-0 left-0 h-[60px]">
+      <nav className="bg-[#1B5B45] fixed w-full z-20 top-0 left-0 h-[60px] p-10 border-2 border-transparent border-b-[#F4F0BB]">
         <div className="container flex justify-between items-center mx-auto h-full">
           <Link href="/" className="">
             <img src="/img/logo.png" className="w-[40px]" alt="Logo" />

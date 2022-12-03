@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import styles from "./../styles/home.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import { Avatar, Button } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -18,7 +18,7 @@ export default function Home({ data }) {
   };
 
   const searchProduct = async (name) => {
-    const res = await axios.get("http://localhost:3001/products?name=" + name);
+    const res = await axios.get("https://c8-43-m-mern.vercel.app/products?name=" + name);
     setProduct(res.data);
   };
 
@@ -222,7 +222,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://localhost:3001/products/sellers");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/sellers");
     const data = await res.json();
 
     return {

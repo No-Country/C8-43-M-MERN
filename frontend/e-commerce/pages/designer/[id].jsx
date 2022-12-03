@@ -64,7 +64,7 @@ export default function Designer({ data }) {
           <section>
             <h3 className="text-2xl mb-8 font-semibold">Estilos</h3>
             <div className="flex flex-wrap justify-center">
-              <div className="flex gap-8 mb-32">
+              <div className="flex flex-wrap gap-8 mb-32">
                 {data.products.map(({ image, sizes, color, _id }) => (
                   <div>
                     <Link href="/product/[id].jsx" as={`/product/${_id}`}>
@@ -123,7 +123,7 @@ export default function Designer({ data }) {
 }
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://localhost:3001/products/sellers");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/sellers");
     const data = await res.json();
     const paths = data.map(({ _id }) => ({ params: { id: `${_id}` } }));
     return {
@@ -137,7 +137,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("http://localhost:3001/seller/" + params.id);
+    const res = await fetch("https://c8-43-m-mern.vercel.app/seller/" + params.id);
     const data = await res.json();
     return {
       props: {
