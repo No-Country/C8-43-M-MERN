@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com', "cdn.pixabay.com"],
   },
+  experimental: {
+    forceSwcTransforms: true,
+  },
 }
 
 module.exports = nextConfig

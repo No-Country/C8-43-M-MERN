@@ -3,6 +3,7 @@ const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
 const { getTokenData } = require("../config/jwt");
 const cloudinary = require("../utils/handleCloudinary");
+const { sendEmail, getTemplateFollowers } = require("../config/nodemailer");
 
 const getSeller = async (req, res) => {
   try {
@@ -74,13 +75,20 @@ const createProduct = async (req, res) => {
     //!GUARDO SELLER ACTUALIZADO
     await seller.save();
 
+    await seller.followers.forEach((email) => {
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplateFollowers(seller.name, seller.lastname, seller._id);
+
+      //!ENVIAR EMAIL DE AVISO
+      sendEmail(email, "Valen App", template);
+    });
+
     //!RESPUESTA
     res.send({
       msg: "Producto creado correctamente",
       product,
     });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_CREATE_PRODUCT");
   }
 };
@@ -181,11 +189,11 @@ const unbanProduct = async (req, res) => {
     req = matchedData(req);
     const { id } = req;
 
+    //!RESTABLESCO PRODUCTO
     await productsModel.restore({ _id: id });
 
     res.send("Producto habilitado");
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_UNBAN_IPRODUCT");
   }
 };

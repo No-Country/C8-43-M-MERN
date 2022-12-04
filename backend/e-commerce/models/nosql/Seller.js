@@ -54,7 +54,12 @@ const SellerSchema = new mongoose.Schema(
     products: [{
       type: Schema.Types.ObjectId,
       ref: "products",
-    }]
+    }],
+    followers: [{
+      type: String,
+      lowercase: true,
+      unique: true,
+    }],
   },
   { timestamps: true, versionKey: false }
 );

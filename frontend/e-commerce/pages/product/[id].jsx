@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Product.module.css";
 import { useState } from "react";
 
 export default function Product({ data }) {
@@ -45,8 +44,8 @@ export default function Product({ data }) {
             </span>
             <h4 className="text-2xl text-green-800">Colores</h4>
             <div className="flex">
-              <div className={styles.circleBlack}></div>
-              <div className={styles.circleGreen}></div>
+              <div>{data.color}</div>
+              
             </div>
             <div className="flex flex-col">
               <h4 className="text-2xl text-green-800 my-8">Cantidad</h4>
