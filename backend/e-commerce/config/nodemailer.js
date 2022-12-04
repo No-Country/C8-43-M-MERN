@@ -10,7 +10,7 @@ const sendEmail = async (email, subject, html) => {
     html,
   };
   try {
-    await sendGrid.send(messageData)
+    await sendGrid.send(messageData);
   } catch (error) {
     console.log(error);
   }
@@ -25,7 +25,7 @@ const sendHelpFormEmail = async (email, subject, html) => {
     html,
   };
   try {
-    await sendGrid.send(messageData)
+    await sendGrid.send(messageData);
   } catch (error) {
     console.log(error);
   }
@@ -48,7 +48,8 @@ const getTemplateReset = (id, name, token) => {
   return `
       <div id="email___content">
           <h2>Hola ${name}</h2>
-          <p>Para restaurar tu contraseña, ingrese al siguiente enlace</p>
+          <p>Este es un email para restaurar tu contraseña de Valen, ingrese al siguiente enlace.
+          Si no has solicitado restaurar tu contraseña, por favor desestima esta email.</p>
           <a
               href="https://c8-43-m-mern-api.vercel.app/auth/resetpassword/${id}/${token.token}"
               target="_blank"
@@ -81,5 +82,5 @@ module.exports = {
   getTemplate,
   getTemplateReset,
   getTemplateHelpForm,
-  getTemplateFollowers
+  getTemplateFollowers,
 };

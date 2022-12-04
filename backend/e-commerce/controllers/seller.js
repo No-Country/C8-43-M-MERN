@@ -75,8 +75,6 @@ const createProduct = async (req, res) => {
     //!GUARDO SELLER ACTUALIZADO
     await seller.save();
 
-    //!ENVIO EMAIL A SEGUIDORES
-
     await seller.followers.forEach((email) => {
       //!OBTENER TEMPLATE PARA EMAIL
       const template = getTemplateFollowers(seller.name, seller.lastname);
@@ -91,7 +89,6 @@ const createProduct = async (req, res) => {
       product,
     });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_CREATE_PRODUCT");
   }
 };
@@ -192,11 +189,11 @@ const unbanProduct = async (req, res) => {
     req = matchedData(req);
     const { id } = req;
 
+    //!RESTABLESCO PRODUCTO
     await productsModel.restore({ _id: id });
 
     res.send("Producto habilitado");
   } catch (error) {
-    console.log(error);
     handleHttpError(res, "ERROR_UNBAN_IPRODUCT");
   }
 };
