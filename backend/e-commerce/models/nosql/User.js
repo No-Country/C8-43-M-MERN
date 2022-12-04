@@ -52,6 +52,10 @@ const UserSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "products",
     }],
+    follows: [{
+      type: Schema.Types.ObjectId,
+      ref: "sellers",
+    }],
   },
   { timestamps: true, versionKey: false }
 );

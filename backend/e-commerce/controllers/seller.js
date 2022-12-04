@@ -3,6 +3,7 @@ const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
 const { getTokenData } = require("../config/jwt");
 const cloudinary = require("../utils/handleCloudinary");
+const { sendEmail, getTemplateFollowers } = require("../config/nodemailer");
 
 const getSeller = async (req, res) => {
   try {
@@ -73,6 +74,16 @@ const createProduct = async (req, res) => {
 
     //!GUARDO SELLER ACTUALIZADO
     await seller.save();
+
+    //!ENVIO EMAIL A SEGUIDORES
+
+    await seller.followers.forEach((email) => {
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplateFollowers(seller.name, seller.lastname);
+
+      //!ENVIAR EMAIL DE AVISO
+      sendEmail(email, "Valen App", template);
+    });
 
     //!RESPUESTA
     res.send({

@@ -66,10 +66,20 @@ const getTemplateHelpForm = (name, lastname, description, email) => {
     `;
 };
 
+const getTemplateFollowers = (name, lastname) => {
+  return `
+      <div id="email___content">
+          <h2>Nueva alerta</h2>
+          <p>Hola! Este email es para avisarte que el vendedor ${name} ${lastname} a quien sigues, a agregado nuevas prendas a su tienda!</p>
+      </div>
+    `;
+};
+
 module.exports = {
   sendEmail,
   sendHelpFormEmail,
   getTemplate,
   getTemplateReset,
-  getTemplateHelpForm
+  getTemplateHelpForm,
+  getTemplateFollowers
 };
