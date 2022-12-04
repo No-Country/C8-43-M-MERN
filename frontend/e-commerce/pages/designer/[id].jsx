@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Designer.module.css";
 import Link from "next/link";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaBehance } from "react-icons/fa";
@@ -76,34 +75,6 @@ export default function Designer({ data }) {
                       />
                     </Link>
                     <div className="flex mt-2">
-                      {color === "Celeste" ? (
-                        <div className={styles.circleSky}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Purpura" ? (
-                        <div className={styles.circlePurple}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Marron" ? (
-                        <div className={styles.circleBrown}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Blanco, Negro" ? (
-                        <div className={styles.circleBlack}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Rosa, Negro" ? (
-                        <div className="flex space-x-2">
-                          <div className={styles.circlePink}></div>{" "}
-                          <div className={styles.circleBlack}></div>
-                        </div>
-                      ) : (
-                        ""
-                      )}
                       <div>
                         <p className=" text-gray-700 text-lg font-semibold ml-8">
                           {sizes}
