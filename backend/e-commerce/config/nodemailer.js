@@ -67,13 +67,16 @@ const getTemplateHelpForm = (name, lastname, description, email) => {
     `;
 };
 
-const getTemplateFollowers = (name, lastname) => {
+const getTemplateFollowers = (name, lastname, id) => {
   return `
       <div id="email___content">
           <h2>Nueva alerta</h2>
           <p>Hola! Este email es para avisarte que el vendedor ${name} ${lastname} a quien sigues, a agregado nuevas prendas a su tienda!</p>
       </div>
-    `;
+      <a
+      href="http://localhost:3001/seller/${id}" //!MODIFICAR PARA DEPLOY
+      target="_blank"
+  >Ir a Tienda del Vendedor</a>`;
 };
 
 module.exports = {
