@@ -54,7 +54,7 @@ const SellerSchema = new mongoose.Schema(
     products: [{
       type: Schema.Types.ObjectId,
       ref: "products",
-    }]
+    }],
   },
   { timestamps: true, versionKey: false }
 );
