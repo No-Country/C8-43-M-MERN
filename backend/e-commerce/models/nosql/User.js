@@ -48,6 +48,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: "UNVERIFIED",
     },
+    favorites: [{
+      type: Schema.Types.ObjectId,
+      ref: "products",
+    }],
   },
   { timestamps: true, versionKey: false }
 );
