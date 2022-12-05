@@ -182,18 +182,12 @@ const unFollow = async (req, res) => {
         { multi: true }
       );
 
-      //!BUSCO EL USER A ELIMINAR
-      let userr = sellerr.followers.filter(
-        (f) => f._id.toString() === dataToken._id
+      //!ELIMINO REFERENCIA AL USER DEL VENDEDOR
+      await sellersModel.updateOne(
+        { _id: sellerr._id },
+        { $pull: { followers: user._id } },
+        { multi: true }
       );
-
-      if (userr.length !== 0) {
-        //!ELIMINO REFERENCIA AL USER DEL VENDEDOR
-        await sellersModel.updateOne(
-          { _id: sellerr._id },
-          { $pull: { followers: userr } },
-          { multi: true }
-        );
 
       //!RESPUESTA
       res.send("Vendedor dejado de seguir");
