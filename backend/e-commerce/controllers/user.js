@@ -168,6 +168,7 @@ const unFollow = async (req, res) => {
 
     //!BUSCO AL USER EN LA DB
     let user = await usersModel.findOne({ email: dataToken.email });
+
     //!BUSCO AL SELLER EN LA DB
     let sellerr = await sellersModel.findById(id);
 
@@ -184,8 +185,8 @@ const unFollow = async (req, res) => {
 
       //!ELIMINO REFERENCIA AL USER DEL VENDEDOR
       await sellersModel.updateOne(
-        { _id: sellerr._id },
-        { $pull: { followers: user._id } },
+        { _id: sellerr._id.toString() },
+        { $pull: { followers: user.email } },
         { multi: true }
       );
 
