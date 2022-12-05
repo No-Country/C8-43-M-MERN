@@ -146,7 +146,7 @@ const followSeller = async (req, res) => {
         await user.save();
 
         //!AGREGO EMAIL DE SEGUIDOR A LA LISTA DEL VENDEDOR
-        seller.followers = seller.followers.concat(user.email)
+        seller.followers = seller.followers.concat(user.email);
         await seller.save();
 
         //!RESPUESTA
@@ -168,6 +168,8 @@ const unFollow = async (req, res) => {
 
     //!BUSCO AL USER EN LA DB
     let user = await usersModel.findOne({ email: dataToken.email });
+    //!BUSCO AL SELLER EN LA DB
+    let sellerr = await sellersModel.findById(id);
 
     //!BUSCO EL VENDEDOR A ELIMINAR
     let seller = user.follows.filter((f) => f._id.toString() === id);
@@ -179,6 +181,19 @@ const unFollow = async (req, res) => {
         { $pull: { follows: id } },
         { multi: true }
       );
+
+      //!BUSCO EL USER A ELIMINAR
+      let userr = sellerr.followers.filter(
+        (f) => f._id.toString() === dataToken._id
+      );
+
+      if (userr.length !== 0) {
+        //!ELIMINO REFERENCIA AL USER DEL VENDEDOR
+        await sellersModel.updateOne(
+          { _id: sellerr._id },
+          { $pull: { followers: userr } },
+          { multi: true }
+        );
 
       //!RESPUESTA
       res.send("Vendedor dejado de seguir");
@@ -244,5 +259,5 @@ module.exports = {
   followSeller,
   unFollow,
   getFollower,
-  getFollowers
+  getFollowers,
 };
