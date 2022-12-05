@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 
-function about() {
+
+function Nosotros() {
     return (
         <Layout>
             <div>
@@ -12,71 +13,73 @@ function about() {
                     <link rel="icon" href="/img/logo4.png" />
                 </Head>
 
-                <section className="mt-[140px] flex flex-col items-center justify-center w-[95%]  max-w-[1024px] mx-auto">
+                <section className="mt-[140px] flex flex-col items-center justify-center w-[95%] gap-[70px] max-w-[1024px] mx-auto">
 
 
-                    <article className="flex flex-col items-center">
+                    <article className="flex flex-col items-center justify-center w-[835px]">
                         <header className="col-span-2 mb-[30px] self-start mx-auto md:ml-0  ">
-                            <p className="font-medium text-2xl ">Nuestra Mision</p>
+                            <p className="font-medium text-[32px] ml-[7px] text-[#1B5B45] ">Nuestra Misión</p>
                         </header>
-                        <div className="flex flex-wrap gap-[15px] col-span-2 justify-center">
-                            <div className="w-[278px] h-[242px] bg-[#D9D9D9] "></div>
-                            <div className="w-[80%] mx-auto md:text-start text-center max-w-[450px] ">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                    sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
-                                    quidem recusandae, ipsam, ratione modi deleniti nostrum quia. Quae, esse asperiores.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                    sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
-                                </p>
+                        <div className="flex w-[100%] flex-row gap-[15px] col-span-2 justify-between">
+                            <div className="">
+                                <img className="min-w-[290px] min-h-[250px] " src="/img/sobre-nosotros/Mask group.png" alt="" />
+                            </div>
+                            <div className="w-[80%] mx-auto md:text-start text-center max-w-[510px] h-[240px] flex flex-col gap-[20px]">
+                                <p className="text-[#1B5B45] text-[20px] mr-[0px] font-[300] ">Argentina es un pais lleno de talento.</p>
+                                <p className="text-[#1B5B45] text-[20px] mr-[0px] font-[300] "> Queremos que la gente tenga la oportunidad <br /> de conocerlos.</p>
+                                <p className="text-[#1B5B45] text-[20px] mr-[0px] font-[300] ">Queremos que el mundo conozca el diseño <br /> de indumentaria Argentino, empezando por <br /> la Argentina misma.</p>
                             </div>
                         </div>
                     </article>
 
-                    <article className="flex flex-col items-center justify-center ">
-                        <header className="col-span-4 self-start m-auto ">
-                            <p className="font-medium text-2xl my-8">Nuestros valores</p>
+                    <article className="flex flex-col items-center justify-center w-[835px]">
+                        <header className="col-span-4 self-start ">
+                            <p className="font-medium text-[32px] my-8 ml-[7px] text-[#1B5B45]">Nuestros propositos valores</p>
                         </header>
                         <div className="flex flex-wrap gap-[80px] justify-center">
 
-                            <article>
-                                <header className="w-[160px] h-[160px] bg-gray-300 rounded-full mb-4 mx-auto "></header>
+                            <article className="">
+                                <header className="">
+                                    <img className="w-[160px] h-[160px]  rounded-full mb-4 mx-auto " src="/img/sobre-nosotros/Group 1335.png" alt="" />
+                                    <p className="text-center font-[500] text-[24px] text-[#1B5B45]">Alentar</p>
+                                </header>
                                 <div className="">
-                                    <p className="w-[225px] text-center">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
-                                        veritatis illum necessitatibus dolores unde quae similique dolor
-                                        corporis sint nam. Sequi, fuga totam!
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
+                                    <p className="w-[225px] text-center font-[300] text-[17px] text-[#1B5B45]">
+                                        <span className="font-[700]">¡Queremos que te muestres!</span> Como diseñador y como persona.
+                                        <br /><br />
+                                        Queremos verte llegar lejos con tus ideas y que <span className="font-[700]">la gente conozca tu nombre.</span>
                                     </p>
                                 </div>
                             </article>
 
                             <article>
-                                <header className="w-[160px] h-[160px] bg-gray-300 rounded-full mb-4 mx-auto "></header>
+                                <header>
+                                    <img className="w-[200px] h-[160px] rounded-full mb-4 mx-auto " src="/img/sobre-nosotros/Group 1334.png" alt="" />
+                                    <p className="text-center font-medium text-[24px] text-[#1B5B45]">Crear oportunidades</p>
+                                </header>
                                 <div className="">
-                                    <p className="w-[225px] text-center">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
-                                        veritatis illum necessitatibus dolores unde quae similique dolor
-                                        corporis sint nam. Sequi, fuga totam!
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
+                                    <p className="w-[225px] text-center text-[17px] font-[300] text-[#1B5B45]">
+                                        Creemos en que el trabajo duro tiene su recompensa.
+                                        <br /><br />
+                                        Queremos darte este <span className="font-[700]">espacio</span> para que lo puedas <span className="font-[700]">usar</span> de <span className="font-[700]">portafolio</span>  y que el mismo justifique una experiencia de trabajo.
+                                        <br /><br />
+                                        No solo lo diseñaste, <span className="font-[700]">¡Lo hiciste y lo vendiste!</span>
                                     </p>
                                 </div>
                             </article>
 
                             <article>
-                                <header className="w-[160px] h-[160px] bg-gray-300 rounded-full mb-4 mx-auto "></header>
+                                <header>
+                                    <img className="w-[210px] h-[160px]  rounded-full mb-4 mx-auto " src="/img/sobre-nosotros/Group 1336.png" alt="" />
+                                    <p className="text-center font-medium text-[24px] text-[#1B5B45]">¡¡Hacer conocer <br /> Argentina!!</p>
+                                </header>
                                 <div className="">
-                                    <p className="w-[225px] text-center">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
-                                        veritatis illum necessitatibus dolores unde quae similique dolor
-                                        corporis sint nam. Sequi, fuga totam!
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Totam quaerat nulla magni, doloribus voluptatem odio officia,
+                                    <p className="w-[225px] text-center font-[300] text-[17px] text-[#1B5B45]">
+                                        No basta con que Argentina conozca a sus diseñadores.
+                                        <br /><br />
+                                        El mundo tiene que conocer Argentina por su moda y creatividad.
+                                        <br /><br />
+                                        Estamos cerca... <span className="font-[700]">¡Estemos por delante de nuestro objetivos!</span>
                                     </p>
                                 </div>
                             </article>
@@ -85,36 +88,37 @@ function about() {
 
                     </article>
 
-                    <article className="flex flex-col items-center self-center">
+                    <article className="flex flex-col items-center self-center w-[835px]">
                         <header className="self-start m-auto md:ml-0">
-                            <h3 className="font-medium text-2xl my-8">¿Que te ofrecemos?</h3>
+                            <h3 className="font-medium text-[32px] text-[#1B5B45] my-8 ml-[7px]">¿Que te ofrecemos?</h3>
                         </header>
 
-                        <article className="flex mb-14">
-                            <div className="flex flex-wrap gap-4">
-                                <div className="w-[278px] h-[155px] bg-[#D9D9D9] m-auto"></div>
-                                <div className="w-[80%] text-center max-w-[450px] m-auto">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                        sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
-                                        quidem recusandae, ipsam, ratione modi deleniti nostrum quia. Quae, esse asperiores.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                        sequi rem dignissimos illo quibusdam
+                        <article className="flex mb-14 self-start ">
+                            <div className="flex flex-row gap-4 justigy-between">
+                                <div className="" >
+                                    <img className="w-[450px] h-[235px] m-auto" src="/img/sobre-nosotros/Mask group (1).png" alt="" />
+                                </div>
+                                <div className="w-[80%]  max-w-[450px] flex justify-end">
+                                    <p className="text-[20px] font-[300] text-[#1B5B45]">
+                                        <span className="font-[700]">Un espacio solo para diseñadores </span>   donde no <br />
+                                        tendras que competir con grandes marcas, <br />
+                                        un lugar donde se pueda valorar tus diseños <br />
+                                        por su estilo unico e inigualable que sos vos.
                                     </p>
                                 </div>
                             </div>
                         </article>
 
-                        <article className="flex mb-14">
-                            <div className="flex flex-wrap flex-row-reverse gap-4">
-                                <div className="w-[278px] h-[155px] bg-[#D9D9D9] col-start-2 m-auto"></div>
-                                <div className="w-[80%] max-w-[450px] text-center m-auto">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                        sequi rem dignissimos illo quibusdam laudantium fugit maxime a sapiente
-                                        quidem recusandae, ipsam, ratione modi deleniti nostrum quia. Quae, esse asperiores.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-                                        sequi rem dignissimos illo quibusdam
+                        <article className="flex mb-14 self-end">
+                            <div className="flex flex-row-reverse gap-4 justigy-between">
+                                <div >
+                                    <img className="w-[460px] h-[235px] col-start-2 m-auto" src="/img/sobre-nosotros/Mask group (2).png" alt="" />
+                                </div>
+                                <div className="w-[80%] max-w-[450px] ">
+                                    <p className="font-[300] text-[#1B5B45] text-[20px]">
+                                        La oportunidad de que tengas <span className="font-[700]"> un <br />
+                                        guardaropas unico y diferente</span>, creado por <br />
+                                        diseñadores exclusivos de “Valen”.
                                     </p>
                                 </div>
                             </div>
@@ -123,11 +127,10 @@ function about() {
 
                 </section>
 
-
                 <section className="bg-[#1B5B45] pb-[50px]">
-                    <article className="flex flex-col max-w-[1024px] mx-auto w-[95%]">
+                    <article className="flex flex-col max-w-[1024px] mx-auto min-w-[95%] w-[835px]">
                         <header className="mb-[30px] pt-[23px] self-start ">
-                            <h3 className="font-medium text-2xl text-[#F4F0BB]">Nuestro equipo</h3>
+                            <h3 className="font-medium text-[32px] text-[#F4F0BB]">Nuestro equipo</h3>
 
                         </header>
                         <div className="">
@@ -205,4 +208,4 @@ function about() {
     )
 }
 
-export default about
+export default Nosotros

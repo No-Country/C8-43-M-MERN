@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 
 
-function contact() {
+function Ayuda() {
 
     const formSubmit = e => {
         e.preventDefault()
@@ -33,27 +33,27 @@ function contact() {
                 <section className="mx-auto mb-[80px] mt-[140px] w-[95%] max-w-[1024px] ">
 
                     <header>
-                        <h3 className="font-normal text-[30px]">Ayuda/Contacto</h3>
+                        <h3 className="font-[700] text-[32px] text-[#1B5B45]">Ayuda/Contacto</h3>
                     </header>
 
                     <div className="mt-[15px] flex flex-col gap-[15px]">
 
                         <article>
                             <header>
-                                <p className="text-[20px] font-medium">Configuraciones de la cuenta</p>
+                                <p className="text-[24px] font-medium text-[#1B5B45]">Problemas con la Configuración de tu cuenta?</p>
                             </header>
                             <ul className="list-disc">
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ConfiguracionDeLaCuenta-1" className="text-[#1B5B45]">
                                         Olvidé mi contraseña. ¿Cómo la recupero?
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ConfiguracionDeLaCuenta-2" className="text-[#1B5B45]">
                                         ¿Cómo puedo cambiar mi contraseña?
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ConfiguracionDeLaCuenta-3" className="text-[#1B5B45]">
                                         ¿Cómo cambio la imagen de perfil de mi cuenta?
                                     </a>
@@ -63,25 +63,25 @@ function contact() {
 
                         <article>
                             <header>
-                                <p className="text-[20px] font-medium">Compra y venta de productos</p>
+                                <p className="text-[24px] font-medium text-[#1B5B45]">Compra y venta de productos</p>
                             </header>
                             <ul className="list-disc">
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a className="text-[#1B5B45]" href="#Compra/VentaDeProductos-1">
                                         ¿Cómo comprar en Valen?
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a className="text-[#1B5B45]" href="#Compra/VentaDeProductos-2">
                                         Medios de pago disponibles.
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a className="text-[#1B5B45]" href="#Compra/VentaDeProductos-3">
                                         ¿Es seguro comprar en Valen?
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a className="text-[#1B5B45]" href="#Compra/VentaDeProductos-4">
                                         ¿Cuáles son las promociones disponibles?
                                     </a>
@@ -91,25 +91,25 @@ function contact() {
 
                         <article>
                             <header>
-                                <p className="text-[20px] font-medium">Problemas con diseñadores/compradores</p>
+                                <p className="text-[24px] font-medium text-[#1B5B45]">Problemas con diseñadores/compradores</p>
                             </header>
                             <ul className="list-disc">
-                                <li className="text-[18px] ">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ProblemasConDiseñadores/Compradores-1" className="text-[#1B5B45]">
                                         No recibí el pedido/pago.
                                     </a>
                                 </li>
-                                <li className="text-[18px] ">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ProblemasConDiseñadores/Compradores-2" className="text-[#1B5B45]">
                                         ¿Cómo realizo el cambio o una devolución?
                                     </a>
                                 </li>
-                                <li className="text-[18px] ">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ProblemasConDiseñadores/Compradores-3" className="text-[#1B5B45]">
                                         ¿Cómo es el proceso de reintegro de dinero?
                                     </a>
                                 </li>
-                                <li className="text-[18px] ">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#ProblemasConDiseñadores/Compradores-4" className="text-[#1B5B45]">
                                         Quiero saber el estado de mi cambio/devolución.
                                     </a>
@@ -119,25 +119,25 @@ function contact() {
 
                         <article>
                             <header>
-                                <p className="text-[20px] font-medium">Otras preguntas</p>
+                                <p className="text-[24px] font-medium text-[#1B5B45]">Otras preguntas</p>
                             </header>
                             <ul className="list-disc">
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#OtrasPreguntas-1" className="text-[#1B5B45]">
                                         Me gustaría trabajar en Valen.
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#OtrasPreguntas-2" className="text-[#1B5B45]">
                                         Quiero que mi equipo/evento sea sponsoreado por Valen. ¿Cómo los contacto?
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#OtrasPreguntas-3" className="text-[#1B5B45]">
                                         Quiero contratar a Valen para un evento.
                                     </a>
                                 </li>
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#OtrasPreguntas-4" className="text-[#1B5B45]">
                                         Tengo una sugerencia con respecto a la página. ¿Cómo se las hago llegar?
                                     </a>
@@ -147,10 +147,10 @@ function contact() {
 
                         <article>
                             <header>
-                                <p className="text-[20px] font-medium">Contacto</p>
+                                <p className="text-[24px] font-medium text-[#1B5B45]">Contacto</p>
                             </header>
                             <ul className="list-disc">
-                                <li className="text-[18px]">
+                                <li className="text-[18px] ml-[30px]">
                                     <a href="#Contacto" className="text-[#1B5B45]">
                                         Necesito ayuda extra. ¿Cómo los puedo contactar?
                                     </a>
@@ -162,7 +162,7 @@ function contact() {
 
                 </section>
 
-                <hr className=" max-w-[1024px] mx-auto w-[95%]" />
+                <hr className=" max-w-[1024px] mx-auto w-[95%] bg-[#F2CE71] h-[3px]" />
 
                 <section className=" max-w-[1024px] mx-auto w-[95%]">
 
@@ -349,7 +349,7 @@ function contact() {
                                     </header>
                                     <div>
                                         <p className="text-[18px] font-normal">
-                                            Puedes envíarnos tu CV a trabajoenvalen@gmail.com
+                                            Puedes envíarnos tu CV a <a href="mailto:trabajoenvalen@gmail.com" className="text-[#1B5B45] font-[600]">trabajoenvalen@gmail.com</a> 
                                         </p>
                                     </div>
                                 </li>
@@ -360,7 +360,7 @@ function contact() {
                                     </header>
                                     <div>
                                         <p className="text-[18px] font-normal">
-                                            Para eventos envíarnos un mail con el asunto “sponsor” a eventos@valen.com
+                                            Para eventos envíarnos un mail con el asunto “sponsor” a <a href="mailto:eventos@valen.com" className="text-[#1B5B45] font-[600]">eventos@valen.com</a> 
                                         </p>
                                     </div>
                                 </li>
@@ -371,7 +371,7 @@ function contact() {
                                     </header>
                                     <div>
                                         <p className="text-[18px] font-normal">
-                                            Para eventos donde Valen puede participar, enviárnos un mail con el asunto “evento” a eventos@valen.com
+                                            Para eventos donde Valen puede participar, enviárnos un mail con el asunto “evento” a <a href="mailto:eventos@valen.com" className="text-[#1B5B45] font-[600]">eventos@valen.com</a>
                                         </p>
                                     </div>
                                 </li>
@@ -418,19 +418,19 @@ function contact() {
                 <section className=" mt-[60px] mb-[215px] max-w-[1024px] mx-auto ">
                     <form onSubmit={formSubmit} className="flex flex-col gap-[15px] w-[95%] mx-auto">
                         <div>
-                            <label htmlFor="nameLastname">Nombre y apellido</label>
+                            <label className="font-[400] text-[20px]" htmlFor="nameLastname">Nombre y apellido</label>
                             <input className="block w-[95%] max-w-[480px] h-[40px] bg-[#F4F0BB] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[8px]" type="text" id="nameLastname" />
                         </div>
                         <div>
-                            <label htmlFor="email">E-mail</label>
+                            <label className="font-[400] text-[20px]" htmlFor="email">E-mail</label>
                             <input className="block w-[95%] max-w-[480px] h-[40px] bg-[#F4F0BB] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[8px]" type="email" id="email" />
                         </div>
                         <div>
-                            <label htmlFor="subject">Asunto</label>
+                            <label className="font-[400] text-[20px]" htmlFor="subject">Asunto</label>
                             <input className="block w-[95%] max-w-[480px] h-[40px] bg-[#F4F0BB] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[8px]" type="text" id="subject" />
                         </div>
                         <div className="flex flex-col">
-                            <label htmlFor="message">Mensaje</label>
+                            <label className="font-[400] text-[20px]" htmlFor="message">Mensaje</label>
                             <textarea className="w-[95%] max-w-[480px] h-[240px] bg-[#F4F0BB] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[8px]" name="message" id="message" cols="30" rows="10"></textarea>
                         </div>
                         <button className="w-[180px] h-[40px] bg-[#1B5B45] duration-[0.5s] hover:brightness-150  text-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[16px]">Enviar</button>
@@ -438,9 +438,10 @@ function contact() {
                 </section>
 
                 <section className="bg-[#1B5B45] pb-[50px]">
-                    <article className="flex flex-col max-w-[1024px] mx-auto w-[95%]">
+                    <article className="flex flex-col max-w-[1024px] mx-auto w-[95%] ">
                         <header className="mb-[30px] pt-[23px] self-start ">
-                            <h3 className="font-medium text-2xl text-[#F4F0BB]">Nuestro equipo</h3>
+                            <h3 className="font-medium text-[32px] text-[#F4F0BB]">Nuestro equipo</h3>
+
                         </header>
                         <div className="">
                             <ul className="flex min-[375px]:flex-wrap gap-[20px] m-0 justify-between text-[#F4F0BB]">
@@ -487,7 +488,7 @@ function contact() {
                                     <div className="flex flex-col gap-2">
                                         <div>
                                             <p className="font-normal">Gerlo Daniela</p>
-                                            <p className="font-normal">Link linkedin</p>
+                                            <a target={'_blank'} href='https://linkedin.com/in/daniela-gerlo' className="font-normal text-[#F4F0BB]">Link linkedin</a>
                                         </div>
                                     </div>
                                 </li>
@@ -517,4 +518,4 @@ function contact() {
     )
 }
 
-export default contact
+export default Ayuda

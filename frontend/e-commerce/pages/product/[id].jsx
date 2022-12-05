@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Layout from "../../components/Layout";
 import { useState } from "react";
+import { GiCircle } from "react-icons/gi";
 
 export default function Product({ data }) {
   const [quantity, setQuantity] = useState(0);
@@ -44,7 +45,43 @@ export default function Product({ data }) {
             </span>
             <h4 className="text-2xl text-green-800">Colores</h4>
             <div className="flex">
-              <div>{data.color}</div>
+            <div>
+                        <div>
+                          {data.color == "Celeste" ? (
+                            <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {data.color == "Marron" ? (
+                            <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {data.color == "Negro" ? (
+                            <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {data.color == "Rosa" ? (
+                            <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {data.color == "Blanco" ? (
+                            <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
               
             </div>
             <div className="flex flex-col">
