@@ -15,7 +15,7 @@ export default NextAuth({
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "credentials",
+      name: "login",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
@@ -39,7 +39,7 @@ export default NextAuth({
           headers: { "Content-Type": "application/json" }
         })
         const peticion = await res.json()
-        const user = peticion.data.seller
+        const user = peticion.data.seller ||  peticion.data.user
         console.log(user)
         // If no error and we have user data, return it
         if (user) {
@@ -50,5 +50,11 @@ export default NextAuth({
       }
     }),
   ],
- 
+  theme: {	
+    colorScheme: "black",
+      brandColor:"1B5B45",
+      logo: "/img/logo2.png",
+      buttonText:"",
+  },
+
 });
