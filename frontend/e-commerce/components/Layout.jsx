@@ -52,13 +52,15 @@ export default function Layout({ children }) {
               </div>
           <div className="h-full flex justify-center items-center gap-[50px]">
             <div className="flex md:order-2 ">
-              <div className="invisible md:visible w-[50px]">
-                <Avatar
-                  src="https://i.pravatar.cc/150?u=a04258114e29026702d"
-                  size="full"
-                  color="success"
-                  bordered
-                />
+              <div class=" w-[50px]">
+                <Link href='/perfil-cliente' className="cursor-pointer invisible md:visible">
+                  <Avatar
+                    src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                    size="full"
+                    color="success"
+                    bordered
+                  />
+                </Link>
               </div>
               {/* Crear el menu hamburger para el responsive */}
             </div>
