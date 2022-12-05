@@ -33,7 +33,7 @@ function Carrito() {
                             </article>
 
                             <article className="absolute w-[110px] right-[87px] -bottom-[5px]">
-                                <p className="text-[10px] font-[500] text-center text-[#1B5B45] font-[500]">Haz click en: <br /> Continuar con la compra</p>
+                                <p className="text-[10px] font-[500] text-center text-[#1B5B45]">Haz click en: <br /> Continuar con la compra</p>
                             </article>
 
                             <article className="bg-[#87C38F] w-[77px] h-[77px] rounded-full flex items-center justify-center relative">
@@ -92,7 +92,7 @@ function Carrito() {
                                 </div>
 
                                 <Link href='/compra-completa'>
-                                    <button className='w-[375px] h-[50px] rounded-[15px] bg-[#1B5B45] font-medium font-[25px] text-white mt-[60px]'>
+                                    <button className='w-[375px] h-[50px] rounded-[15px] bg-[#1B5B45] font-medium text-white mt-[60px]'>
                                         <p className="font-[500] text-[24px] text-[#F4F0BB]">Continuar con la compra</p>
                                     </button>
                                 </Link>
