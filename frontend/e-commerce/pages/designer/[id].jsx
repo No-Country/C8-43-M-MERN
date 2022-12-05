@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaBehance } from "react-icons/fa";
+import { GiCircle } from "react-icons/gi";
 
 export default function Designer({ data }) {
   return (
@@ -76,6 +77,43 @@ export default function Designer({ data }) {
                     </Link>
                     <div className="flex mt-2">
                       <div>
+                        <div>
+                          {color == "Celeste" ? (
+                            <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {color == "Marron" ? (
+                            <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {color == "Negro" ? (
+                            <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {color == "Rosa" ? (
+                            <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          {color == "Blanco" ? (
+                            <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
+                      <div>
                         <p className=" text-gray-700 text-lg font-semibold ml-8">
                           {sizes}
                         </p>
@@ -107,7 +145,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("https://c8-43-m-mern.vercel.app/seller/" + params.id);
+    const res = await fetch(
+      "https://c8-43-m-mern.vercel.app/seller/" + params.id
+    );
     const data = await res.json();
     return {
       props: {

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-import Image from 'next/image'
+
 
 function Nosotros() {
     return (
@@ -110,7 +110,7 @@ function Nosotros() {
                         </article>
 
                         <article className="flex mb-14 self-end">
-                            <div className="flex flex-row flex-row-reverse gap-4 justigy-between">
+                            <div className="flex flex-row-reverse gap-4 justigy-between">
                                 <div >
                                     <img className="w-[460px] h-[235px] col-start-2 m-auto" src="/img/sobre-nosotros/Mask group (2).png" alt="" />
                                 </div>
@@ -128,7 +128,7 @@ function Nosotros() {
                 </section>
 
                 <section className="bg-[#1B5B45] pb-[50px]">
-                    <article className="flex flex-col max-w-[1024px] mx-auto w-[95%] w-[835px]">
+                    <article className="flex flex-col max-w-[1024px] mx-auto min-w-[95%] w-[835px]">
                         <header className="mb-[30px] pt-[23px] self-start ">
                             <h3 className="font-medium text-[32px] text-[#F4F0BB]">Nuestro equipo</h3>
 
