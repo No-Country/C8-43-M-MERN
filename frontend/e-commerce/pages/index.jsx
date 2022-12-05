@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
-import styles from "./../styles/home.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import { Avatar, Button } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -18,7 +17,9 @@ export default function Home({ data }) {
   };
 
   const searchProduct = async (name) => {
-    const res = await axios.get("http://localhost:3001/products?name=" + name);
+    const res = await axios.get(
+      "https://c8-43-m-mern.vercel.app/products?name=" + name
+    );
     setProduct(res.data);
   };
 
@@ -78,7 +79,7 @@ export default function Home({ data }) {
               </form>
             </div>
             <div className="flex gap-32 mb-32 mx-16 justify-center">
-              {product.map(({ name, color, description, image, price }) => (
+              {product.map(({ name, description, image, price }) => (
                 <div>
                   <h4>{name}</h4>
                   <Image
@@ -89,44 +90,13 @@ export default function Home({ data }) {
                     className="w-32 h-32 rounded-full"
                   />
                   <h2 className="text-yellow-600">${price}</h2>
-                  <p className="flex text-lg">
-                    {" "}
-                    {description}{" "}
-                    {color === "Celeste" ? (
-                      <div className={styles.circleSky}></div>
-                    ) : (
-                      ""
-                    )}
-                    {color === "Purpura" ? (
-                      <div className={styles.circlePurple}></div>
-                    ) : (
-                      ""
-                    )}
-                    {color === "Marron" ? (
-                      <div className={styles.circleBrown}></div>
-                    ) : (
-                      ""
-                    )}
-                    {color === "Blanco, Negro" ? (
-                      <div className={styles.circleBlack}></div>
-                    ) : (
-                      ""
-                    )}
-                    {color === "Rosa, Negro" ? (
-                      <div className="flex space-x-2">
-                        <div className={styles.circlePink}></div>{" "}
-                        <div className={styles.circleBlack}></div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </p>
+                  <p className="flex text-lg"> {description} </p>
                 </div>
               ))}
             </div>
             <div className="flex flex-col mx-16 z-0 gap-12">
               {data.map(({ _id, products, name, lastname, profileimage }) => (
-                <div className="flex gap-8">
+                <div className="flex gap-8" key={_id}>
                   <div className="mx-32">
                     <div className="flex gap-8 mb-8 z-0">
                       <div className="z-0">
@@ -149,55 +119,29 @@ export default function Home({ data }) {
                       </div>
                     </div>
                     <div className="flex gap-8 mb-32">
-                      {products.slice(0, 3).map(({ image, sizes, color }) => (
-                        <div>
-                          <div>
-                            <Image
-                              src={image.url}
-                              alt="photo"
-                              width="900"
-                              height="900"
-                              className="w-72 h-72"
-                            />
-                          </div>
-                          <div className="flex mt-2">
-                            {color === "Celeste" ? (
-                              <div className={styles.circleSky}></div>
-                            ) : (
-                              ""
-                            )}
-                            {color === "Purpura" ? (
-                              <div className={styles.circlePurple}></div>
-                            ) : (
-                              ""
-                            )}
-                            {color === "Marron" ? (
-                              <div className={styles.circleBrown}></div>
-                            ) : (
-                              ""
-                            )}
-                            {color === "Blanco, Negro" ? (
-                              <div className={styles.circleBlack}></div>
-                            ) : (
-                              ""
-                            )}
-                            {color === "Rosa, Negro" ? (
-                              <div className="flex space-x-2">
-                                <div className={styles.circlePink}></div>{" "}
-                                <div className={styles.circleBlack}></div>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-
+                      {products
+                        .slice(0, 3)
+                        .map(({ _id, image, sizes, color }) => (
+                          <div key={_id}>
                             <div>
-                              <p className=" text-gray-700 text-lg font-semibold ml-16">
-                                {sizes}
-                              </p>
+                              <Image
+                                src={image.url}
+                                alt="photo"
+                                width="900"
+                                height="900"
+                                className="w-72 h-72"
+                              />
+                            </div>
+                            <div className="flex mt-2">
+                              <div>{color}</div>
+                              <div>
+                                <p className=" text-gray-700 text-lg font-semibold ml-16">
+                                  {sizes}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   </div>
                   <div>
@@ -222,7 +166,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://localhost:3001/products/sellers");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/sellers");
     const data = await res.json();
 
     return {

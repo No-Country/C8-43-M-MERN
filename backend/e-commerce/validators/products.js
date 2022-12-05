@@ -12,7 +12,7 @@ const validatorCreateItem = [
   check("name").exists().notEmpty().isString(),
   check("color").exists().notEmpty().isString(),
   check("category").exists().notEmpty().isString(),
-  check("sizes").exists().notEmpty().isString(),
+  check("sizes").exists().notEmpty(),
   check("price").exists().notEmpty().isNumeric(),
   check("description").exists().notEmpty().isString(),
   (req, res, next) => {

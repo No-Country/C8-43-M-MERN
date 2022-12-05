@@ -1,7 +1,5 @@
-import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Home.module.css";
 import Link from "next/link";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaBehance } from "react-icons/fa";
@@ -11,7 +9,7 @@ export default function Designer({ data }) {
     <Layout>
       <div className="mx-64 mt-60">
         <div>
-          <main className="flex">
+          <main className="flex" key={data._id}>
             <Image
               src={data.profileimage.url}
               width="200"
@@ -64,7 +62,7 @@ export default function Designer({ data }) {
           <section>
             <h3 className="text-2xl mb-8 font-semibold">Estilos</h3>
             <div className="flex flex-wrap justify-center">
-              <div className="flex gap-8 mb-32">
+              <div className="flex flex-wrap gap-8 mb-32">
                 {data.products.map(({ image, sizes, color, _id }) => (
                   <div>
                     <Link href="/product/[id].jsx" as={`/product/${_id}`}>
@@ -77,34 +75,6 @@ export default function Designer({ data }) {
                       />
                     </Link>
                     <div className="flex mt-2">
-                      {color === "Celeste" ? (
-                        <div className={styles.circleSky}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Purpura" ? (
-                        <div className={styles.circlePurple}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Marron" ? (
-                        <div className={styles.circleBrown}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Blanco, Negro" ? (
-                        <div className={styles.circleBlack}></div>
-                      ) : (
-                        ""
-                      )}
-                      {color === "Rosa, Negro" ? (
-                        <div className="flex space-x-2">
-                          <div className={styles.circlePink}></div>{" "}
-                          <div className={styles.circleBlack}></div>
-                        </div>
-                      ) : (
-                        ""
-                      )}
                       <div>
                         <p className=" text-gray-700 text-lg font-semibold ml-8">
                           {sizes}
@@ -123,7 +93,7 @@ export default function Designer({ data }) {
 }
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://localhost:3001/products/sellers");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/sellers");
     const data = await res.json();
     const paths = data.map(({ _id }) => ({ params: { id: `${_id}` } }));
     return {
@@ -137,7 +107,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("http://localhost:3001/seller/" + params.id);
+    const res = await fetch("https://c8-43-m-mern.vercel.app/seller/" + params.id);
     const data = await res.json();
     return {
       props: {

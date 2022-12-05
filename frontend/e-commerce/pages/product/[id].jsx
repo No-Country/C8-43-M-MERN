@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Layout from "../../components/Layout";
-import styles from "./../../styles/Home.module.css";
 import { useState } from "react";
 
 export default function Product({ data }) {
@@ -45,8 +44,8 @@ export default function Product({ data }) {
             </span>
             <h4 className="text-2xl text-green-800">Colores</h4>
             <div className="flex">
-              <div className={styles.circleBlack}></div>
-              <div className={styles.circleGreen}></div>
+              <div>{data.color}</div>
+              
             </div>
             <div className="flex flex-col">
               <h4 className="text-2xl text-green-800 my-8">Cantidad</h4>
@@ -148,7 +147,7 @@ export default function Product({ data }) {
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://localhost:3001/products/all");
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/all");
     const data = await res.json();
     const paths = data.map(({ _id }) => ({ params: { id: `${_id}` } }));
     return {
@@ -162,7 +161,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("http://localhost:3001/products/" + params.id);
+    const res = await fetch("https://c8-43-m-mern.vercel.app/products/" + params.id);
     const data = await res.json();
     return {
       props: {

@@ -40,7 +40,7 @@ const signUp = async (req, res) => {
       const template = getTemplate(user.name, token);
 
       //!ENVIAR EMAIL DE CONFIRMACION
-      await sendEmail(user.email, "Email de prueba", template);
+      await sendEmail(user.email, "Confirma tu cuenta", template);
 
       //!GUARDO USUARIO EN LA DB
       await user.save();

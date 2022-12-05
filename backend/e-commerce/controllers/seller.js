@@ -3,6 +3,7 @@ const { handleHttpError } = require("../utils/handleError");
 const { matchedData } = require("express-validator");
 const { getTokenData } = require("../config/jwt");
 const cloudinary = require("../utils/handleCloudinary");
+const { sendEmail, getTemplateFollowers } = require("../config/nodemailer");
 
 const getSeller = async (req, res) => {
   try {
@@ -39,22 +40,23 @@ const updatePerfilSeller = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    //!CREO PRODUCTO
     const body = matchedData(req);
-    const product = await productsModel.create(body);
 
     //!DECODIFICO TOKEN
     const token = req.headers.authorization.split(" ").pop();
     const dataToken = await getTokenData(token);
 
+    if (!req.file) {
+      handleHttpError(res, "NOT_IMAGE");
+      return;
+    }
+    //!CREO PRODUCTO
+    const product = await productsModel.create(body);
+
     //!ASIGNO ID DEL SELLER AL PRODUCTO
     product.seller = dataToken._id;
 
     //!REQUIERO Y SUBO IMAGEN
-    if (!req.file) {
-      res.send("Seleccione imagen");
-      return;
-    }
     const fileData = await cloudinary.uploader.upload(req.file.path);
 
     //!AGREGO IMAGEN AL PRODUCTO
@@ -72,6 +74,14 @@ const createProduct = async (req, res) => {
 
     //!GUARDO SELLER ACTUALIZADO
     await seller.save();
+
+    await seller.followers.forEach((email) => {
+      //!OBTENER TEMPLATE PARA EMAIL
+      const template = getTemplateFollowers(seller.name, seller.lastname, seller._id);
+
+      //!ENVIAR EMAIL DE AVISO
+      sendEmail(email, "Valen App", template);
+    });
 
     //!RESPUESTA
     res.send({
@@ -108,14 +118,15 @@ const updateProductImage = async (req, res) => {
     const { id } = matchedData(req);
     const product = await productsModel.findById(id);
 
+    //!REQUIERO Y SUBO IMAGEN
+    if (!req.file) {
+      handleHttpError(res, "NOT_IMAGE");
+      return;
+    }
     //!ELIMINO IMAGEN ANTERIOR(ARCHIVO)
     cloudinary.v2.uploader.destroy(product.image.filename);
 
-    //!REQUIERO Y SUBO IMAGEN
-    if (!req.file) {
-      res.send("Seleccione imagen");
-      return;
-    }
+    //!SUBO IMAGEN
     const fileData = await cloudinary.uploader.upload(req.file.path);
 
     //!ACTUALIZO IMAGEN DEL USER
@@ -159,6 +170,34 @@ const deleteProduct = async (req, res) => {
     handleHttpError(res, "ERROR_DELETE_PRODUCT");
   }
 };
+
+const banProduct = async (req, res) => {
+  try {
+    req = matchedData(req);
+    const { id } = req;
+
+    await productsModel.delete({ _id: id });
+
+    res.send("Producto suspendido");
+  } catch (error) {
+    handleHttpError(res, "ERROR_BAN_IPRODUCT");
+  }
+};
+
+const unbanProduct = async (req, res) => {
+  try {
+    req = matchedData(req);
+    const { id } = req;
+
+    //!RESTABLESCO PRODUCTO
+    await productsModel.restore({ _id: id });
+
+    res.send("Producto habilitado");
+  } catch (error) {
+    handleHttpError(res, "ERROR_UNBAN_IPRODUCT");
+  }
+};
+
 module.exports = {
   getSeller,
   updatePerfilSeller,
@@ -166,4 +205,6 @@ module.exports = {
   updateProduct,
   updateProductImage,
   deleteProduct,
+  banProduct,
+  unbanProduct,
 };
