@@ -1,35 +1,43 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import Image from "next/image";
 
 export default function Slider() {
   return (
-    <div className="mx-4 md:mx-32 my-8">
-    <Carousel autoPlay>
-      <div className="pb-32">
-        <p className="text-gray-300 text-lg md:text-2xl px-4 md:px-64">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Magnam qui impedit animi, eaque nostrum id corporis obcaecati
-          omnis, praesentium inventore, esse voluptas? Hic, facere
-          culpa.
-        </p>
-      </div>
-      <div>
-        <p className="text-gray-300 text-lg md:text-2xl px-4 md:px-64">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Magnam qui impedit animi, eaque nostrum id corporis obcaecati
-          omnis, praesentium inventore, esse voluptas? Hic, facere
-          culpa.
-        </p>
-      </div>
-      <div>
-        <p className="text-gray-300 text-lg md:text-2xl px-4 md:px-64">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Magnam qui impedit animi, eaque nostrum id corporis obcaecati
-          omnis, praesentium inventore, esse voluptas? Hic, facere
-          culpa.
-        </p>
-      </div>
-    </Carousel>
-  </div>
-  )
+    <div className="mx-2 md:mx-32 mt-32">
+      <Carousel autoPlay infiniteLoop>
+        <div className="pb-4">
+          <Image
+            src="/img/frame_1.png"
+            width="1000"
+            height="1000"
+            alt="image"
+            className="w-[300px] h-[200px] md:w-full md:h-full"
+          />
+        </div>
+        <div>
+          <div className="pb-4">
+            <Image
+              src="/img/frame_2.png"
+              width="1000"
+              height="1000"
+              alt="image"
+              className="w-[300px] h-[200px] md:w-full md:h-full"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="pb-4">
+            <Image
+              src="/img/frame_3.png"
+              width="1000"
+              height="1000"
+              alt="image"
+              className="w-[300px] h-[200px] md:w-full md:h-full"
+            />
+          </div>
+        </div>
+      </Carousel>
+    </div>
+  );
 }
