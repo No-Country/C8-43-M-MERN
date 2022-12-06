@@ -27,7 +27,7 @@ function Carrito() {
                 })
             );
         }
-      router.push("/checkout")
+      router.push("http://localhost:4000/checkout")
     };
 
 

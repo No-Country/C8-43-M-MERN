@@ -5,6 +5,7 @@ mercadopago.configure({
 });
 
 const checkout = async (req, res) => {
+  console.log("BODY: ", req.body)
   const fakeBody = {
     title: "Vestido de diseñador",
     description: "Vestido largo creado por estudiante de Diseño de Indumentaria",
