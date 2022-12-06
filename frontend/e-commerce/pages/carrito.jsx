@@ -3,12 +3,14 @@ import { useProduct } from "../context/ProductContext";
 import ArticleCart from "../components/cart/ArticleCart";
 import DeleteModalCart from "../components/cart/DeleteModalCart";
 import Layout from "../components/Layout";
+import { useRouter } from 'next/router'
 
 
 function Carrito() {
 
     const [isActiveModal, setIsActiveModal] = useState(false);
     const { cart, purchases, setPurchases } = useProduct();
+    const router = useRouter()
    
     console.log(purchases)
    
@@ -25,7 +27,7 @@ function Carrito() {
                 })
             );
         }
-      router.push("/compra-completa")
+      router.push("/checkout")
     };
 
 
