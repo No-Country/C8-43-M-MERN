@@ -10,7 +10,7 @@ const validatorGetItem = [
 
 const validatorCreateItem = [
   check("name").exists().notEmpty().isString(),
-  check("color").exists().notEmpty().isArray(),
+  check("color").exists().notEmpty(),
   check("category").exists().notEmpty(),
   check("sizes").exists().notEmpty().isArray(),
   check("price").exists().notEmpty().isNumeric(),
