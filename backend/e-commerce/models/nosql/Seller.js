@@ -38,11 +38,6 @@ const SellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    sex: {
-      type: ["female", "male", "unspecified"],
-      default: "unspecified",
-      required: true,
-    },
     status: {
       type: String,
       required: true,
