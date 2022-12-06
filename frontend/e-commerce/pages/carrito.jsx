@@ -3,14 +3,31 @@ import { useProduct } from "../context/ProductContext";
 import ArticleCart from "../components/cart/ArticleCart";
 import DeleteModalCart from "../components/cart/DeleteModalCart";
 import Layout from "../components/Layout";
-import Link from "next/link";
-
 
 
 function Carrito() {
 
     const [isActiveModal, setIsActiveModal] = useState(false);
-    const { cart } = useProduct();
+    const { cart, purchases, setPurchases } = useProduct();
+   
+    console.log(purchases)
+   
+    const completedPush = (purchasesItem) => {
+        const inPurchases = purchases.find((item) => item._id === purchasesItem._id);
+        if (!inPurchases) {
+            setPurchases([...purchases, { ...purchasesItem }]);
+        } else {
+            setPurchases(
+                purchases.map((item) => {
+                    if (item._id === purchasesItem._id) {
+                        return { ...inPurchases };
+                    } else return item;
+                })
+            );
+        }
+      router.push("/compra-completa")
+    };
+
 
     return (
         <Layout>
@@ -50,7 +67,6 @@ function Carrito() {
 
                         <section>
                             <ArticleCart setIsActiveModal={setIsActiveModal} />
-                            <ArticleCart setIsActiveModal={setIsActiveModal} />
                         </section>
 
                         <section>
@@ -73,32 +89,32 @@ function Carrito() {
 
                                 </header>
                                 {cart.map((cart) => (
-                                <div className='w-[380px] h-[240px] rounded-[25px] bg-[#F4D58D] flex items-center justify-center'>
-                                    <ul className='w-full m-[25px] mb-[10px] font-medium '>
-                                        <li className='flex justify-between'>
-                                            <p className="font-[500] text-[20px]">Precio:</p>
-                                            <p className="font-[500] text-[20px]">{cart.price}</p>
-                                        </li>
-                                        {/* <li className='flex justify-between'>
+                                    <div className='w-[380px] h-[240px] rounded-[25px] bg-[#F4D58D] flex items-center justify-center'>
+                                        <ul className='w-full m-[25px] mb-[10px] font-medium '>
+                                            <li className='flex justify-between'>
+                                                <p className="font-[500] text-[20px]">Precio:</p>
+                                                <p className="font-[500] text-[20px]">{cart.price}</p>
+                                            </li>
+                                            {/* <li className='flex justify-between'>
                                             <p className="font-[500] text-[20px]">IVA 33%:</p>
                                             <p className="font-[500] text-[20px]">23.66 USD</p>
                                         </li> */}
-                                        <li className='flex justify-between'>
-                                            <p className="font-[500] text-[20px]">Envio:</p>
-                                            <p className="font-[500] text-[20px]"> 500 ARS</p>
-                                        </li>
-                                        <li className='flex justify-between mt-[60px]'>
-                                            <p className="font-[500] text-[20px]">Total a pagar</p>
-                                            <p className='font-[700] text-[28px]'>$ {cart.price + 500}</p>
-                                        </li>
-                                    </ul>
-                                </div>))}
+                                            <li className='flex justify-between'>
+                                                <p className="font-[500] text-[20px]">Envio:</p>
+                                                <p className="font-[500] text-[20px]"> 500 ARS</p>
+                                            </li>
+                                            <li className='flex justify-between mt-[60px]'>
+                                                <p className="font-[500] text-[20px]">Total a pagar</p>
+                                                <p className='font-[700] text-[28px]'>$ {cart.price + 500}</p>
+                                            </li>
+                                        </ul>
+                                    </div>))}
 
-                                <Link href='/compra-completa'>
-                                    <button className='w-[375px] h-[50px] rounded-[15px] bg-[#1B5B45] font-medium text-white mt-[60px]'>
+                               
+                                    <button onClick={(e) => { completedPush(cart); e.stopPropagation(); }} className='w-[375px] h-[50px] rounded-[15px] bg-[#1B5B45] font-medium text-white mt-[60px]'>
                                         <p className="font-[500] text-[24px] text-[#F4F0BB]">Continuar con la compra</p>
                                     </button>
-                                </Link>
+                               
 
                             </article>
                         </section>
