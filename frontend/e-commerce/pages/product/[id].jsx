@@ -2,9 +2,16 @@ import Image from "next/image";
 import Layout from "../../components/Layout";
 import { useState } from "react";
 import { GiCircle } from "react-icons/gi";
+import { useProduct } from "../../context/ProductContext";
+import { useRouter } from 'next/router'
 
 export default function Product({ data }) {
+  
+  const router = useRouter()
+  const { cart, setCart } = useProduct();
   const [quantity, setQuantity] = useState(0);
+
+  console.log(cart)
 
   const addQuantity = () => {
     setQuantity(quantity + 1);
@@ -12,6 +19,23 @@ export default function Product({ data }) {
 
   const deleteQuantity = () => {
     setQuantity(quantity - 1);
+  };
+
+  const addToCart = (cartItem) => {
+    setQuantity(quantity + 1);
+    const inCart = cart.find((item) => item._id === cartItem._id);
+    if (!inCart) {
+      setCart([...cart, { ...cartItem}]);
+    } else {
+      setCart(
+        cart.map((item) => {
+          if (item._id === cartItem._id) {
+            return { ...inCart };
+          } else return item;
+        })
+      );
+    }
+    router.push("/carrito")
   };
 
   return (
@@ -45,44 +69,43 @@ export default function Product({ data }) {
             </span>
             <h4 className="text-2xl text-green-800">Colores</h4>
             <div className="flex">
-            <div>
-                        <div>
-                          {data.color == "Celeste" ? (
-                            <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div>
-                          {data.color == "Marron" ? (
-                            <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div>
-                          {data.color == "Negro" ? (
-                            <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div>
-                          {data.color == "Rosa" ? (
-                            <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div>
-                          {data.color == "Blanco" ? (
-                            <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </div>
-              
+              <div>
+                <div>
+                  {data.color == "Celeste" ? (
+                    <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div>
+                  {data.color == "Marron" ? (
+                    <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div>
+                  {data.color == "Negro" ? (
+                    <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div>
+                  {data.color == "Rosa" ? (
+                    <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div>
+                  {data.color == "Blanco" ? (
+                    <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
             </div>
             <div className="flex flex-col">
               <h4 className="text-2xl text-green-800 my-8">Cantidad</h4>
@@ -125,7 +148,13 @@ export default function Product({ data }) {
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <div className="flex justify-center gap-16">
-            <button className="text-[#F4F0BB] bg-[#1B5B45] text-xl px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart(data);
+              }}
+              className="text-[#F4F0BB] bg-[#1B5B45] text-xl px-6 py-2 font-semibold mx-4 text-center rounded-2xl"
+            >
               Solicitar Producto
             </button>{" "}
             <button className="text-[#1B5B45] ring-2 ring-yellow-400 text-xl px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
@@ -163,16 +192,14 @@ export default function Product({ data }) {
               </button>
             </div>
             <div className="flex flex-col">
-            <h2 className="text-4xl font-bold text-[#1B5B45]">
-              Dirección
-            </h2>
-            <p className="text-lg text-[#1B5B45]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ut
-              illum quo, dicta exercitationem, officiis nihil minus, reiciendis
-              eum laboriosam cupiditate architecto tempore error perferendis
-              tempora magnam distinctio omnis. Vel nobis possimus omnis deleniti
-              animi consectetur!
-            </p>
+              <h2 className="text-4xl font-bold text-[#1B5B45]">Dirección</h2>
+              <p className="text-lg text-[#1B5B45]">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+                ut illum quo, dicta exercitationem, officiis nihil minus,
+                reiciendis eum laboriosam cupiditate architecto tempore error
+                perferendis tempora magnam distinctio omnis. Vel nobis possimus
+                omnis deleniti animi consectetur!
+              </p>
             </div>
           </div>
         </section>
@@ -198,7 +225,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const res = await fetch("https://c8-43-m-mern.vercel.app/products/" + params.id);
+    const res = await fetch(
+      "https://c8-43-m-mern.vercel.app/products/" + params.id
+    );
     const data = await res.json();
     return {
       props: {
