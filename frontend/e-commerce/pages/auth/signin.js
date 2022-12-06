@@ -41,13 +41,12 @@ function signin() {
     }
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
-    const result = await response.json();
-    alert(`Is this your full name: ${result.data}`);
+   
   };
 
   return (
     <div className="grid grid-cols-[1fr_1fr_1fr_1fr] h-screen place-items-center bg-[#1B5B45]">
-      <div className="pt-10 mb-0 col-start-2 col-end-4  pt-10 mx-1">
+      <div className="pt-10 mb-0 col-start-2 col-end-4  mx-1">
        
         <Image src="/img/logo2.png" width={500} height={500} />
         <Image src="/img/subtitle.png" width={200} height={200} />

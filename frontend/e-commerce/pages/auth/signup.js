@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
- 
-export default function test() {
+import axios from 'axios'
+
+
+function signup() {
   const router = useRouter();
   const [inputs, setInputs] = useState({});
 
@@ -11,12 +13,9 @@ export default function test() {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  // Handles the submit event on form submit.
   const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
     event.preventDefault();
 
-    // Get data from the form.
     const data = {
       name: inputs.name,
       lastname: inputs.lastname,
@@ -26,36 +25,17 @@ export default function test() {
       sex: inputs.sex,
     };
 
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data);
-
-    // API endpoint where we send form data.
+    
     const endpoint = "http://localhost:4000/auth";
 
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
-
-    // Send the form data to our forms API on Vercel and get a response.
-    const response = await fetch(endpoint, options);
-    const result = await response.json();
-    if (result.ok) {
+    const result = await axios.post(endpoint, data);
+    if (result.status == 200) {
       return router.push("/");
     }
-    // Get the response data from server as JSON.
-    // If server returns the name submitted, that means the form works.
-    
   };
+
   return (
-    // We pass the event to the handleSubmit() function on submit.
+
     <div className="bg-[#1B5B45] grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[0.2fr_1fr_0.2fr_1fr]  gap-4 h-screen place-items-center">
       <img
         className=" col-start-2 col-end-4  pt-10 mx-1"
@@ -241,3 +221,5 @@ export default function test() {
     </div>
   );
 }
+
+export default signup;
