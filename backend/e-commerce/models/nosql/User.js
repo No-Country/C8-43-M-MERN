@@ -38,10 +38,8 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    sex: {
-      type: ["female", "male", "unspecified"],
-      default: "unspecified",
-      required: true,
+    amount: {
+      type: Number,
     },
     status: {
       type: String,

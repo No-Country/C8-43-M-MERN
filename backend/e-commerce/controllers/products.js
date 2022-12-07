@@ -35,6 +35,10 @@ const getProductSearch = async (req, res) => {
     const search = await productsModel.find({
       name: new RegExp(req.query.name.toLowerCase(), "i"),
     });
+    if(req.query.name.toLowerCase().trim() === "") {
+      handleHttpError(res, "ERROR_SEARCH_PRODUCT");
+      return
+    }
     res.send(search);
   } catch (error) {
     handleHttpError(res, "ERROR_SEARCH_PRODUCT");

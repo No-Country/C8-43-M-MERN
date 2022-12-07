@@ -77,7 +77,11 @@ const createProduct = async (req, res) => {
 
     await seller.followers.forEach((email) => {
       //!OBTENER TEMPLATE PARA EMAIL
-      const template = getTemplateFollowers(seller.name, seller.lastname, seller._id);
+      const template = getTemplateFollowers(
+        seller.name,
+        seller.lastname,
+        seller._id
+      );
 
       //!ENVIAR EMAIL DE AVISO
       sendEmail(email, "Valen App", template);

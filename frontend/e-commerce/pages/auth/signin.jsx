@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import axios from "axios";
 
 export default function Signin() {
   const router = useRouter();
@@ -18,32 +19,19 @@ export default function Signin() {
 
     // Send the data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
+    console.log(JSONdata);
 
     // API endpoint where we send form data.
-    const endpoint = "https://c8-43-m-mern.vercel.app/auth/login";
-
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
+    const endpoint = "https://c8-43-m-mern-api.vercel.app/auth/login";
 
     // Send the form data to our forms API on Vercel and get a response.
-    const response = await fetch(endpoint, options);
-    if (response.ok) {
+    const response = await axios.post(endpoint, JSONdata);
+    if (response.status === 200) {
       return router.push("/");
     }
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
   };
-
-  
 
   return (
     <div className="grid grid-cols-[1fr_1fr_1fr_1fr] h-screen place-items-center bg-[#1B5B45]">

@@ -38,11 +38,6 @@ const SellerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    sex: {
-      type: ["female", "male", "unspecified"],
-      default: "unspecified",
-      required: true,
-    },
     status: {
       type: String,
       required: true,
@@ -51,15 +46,15 @@ const SellerSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    products: [{
-      type: Schema.Types.ObjectId,
-      ref: "products",
-    }],
-    followers: [{
-      type: String,
-      lowercase: true,
-      unique: true,
-    }],
+    products: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "products",
+      },
+    ],
+    followers: {
+      type: [String],
+    },
   },
   { timestamps: true, versionKey: false }
 );

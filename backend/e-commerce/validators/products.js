@@ -10,9 +10,9 @@ const validatorGetItem = [
 
 const validatorCreateItem = [
   check("name").exists().notEmpty().isString(),
-  check("color").exists().notEmpty().isString(),
-  check("category").exists().notEmpty().isString(),
-  check("sizes").exists().notEmpty(),
+  check("color").exists().notEmpty(),
+  check("category").exists().notEmpty(),
+  check("sizes").exists().notEmpty().isArray(),
   check("price").exists().notEmpty().isNumeric(),
   check("description").exists().notEmpty().isString(),
   (req, res, next) => {

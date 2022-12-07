@@ -11,17 +11,16 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    color: [{
-      type: String,
+    color: {
+      type: [String],
       required: true,
-    }],
-    category: [{
-      type: String,
+    },
+    category: {
+      type: [String],
       required: true,
-    }],
+    },
     sizes: {
-      type: ["xs", "s", "m", "l", "xl", "xxl", "unspecified"],
-      default: "unspecified",
+      type: [String],
       required: true,
     },
     price: {

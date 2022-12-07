@@ -10,6 +10,7 @@ import axios from "axios";
 
 export default function Home({ data }) {
   const [product, setProduct] = useState([]);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     searchProduct(e.target.value);
@@ -69,8 +70,8 @@ export default function Home({ data }) {
               </form>
             </div>
             <div className="flex md:gap-32 mb-32 mx-4 md:mx-16 md:justify-center">
-              {product.map(({ name, description, image, price }) => (
-                <div>
+              {product.map(({ name, image, price }) => (
+                <div className="text-center">
                   <h4>{name}</h4>
                   <Image
                     src={image.url}
@@ -79,8 +80,7 @@ export default function Home({ data }) {
                     height="200"
                     className="w-4 md:w-32 h-4 md:h-32 rounded-full"
                   />
-                  <h2 className="text-yellow-600">${price}</h2>
-                  <p className="flex text-lg"> {description} </p>
+                  <h2 className="text-yellow-600">${price}</h2>                
                 </div>
               ))}
             </div>
