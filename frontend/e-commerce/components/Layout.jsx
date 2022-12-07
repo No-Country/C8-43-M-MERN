@@ -48,8 +48,8 @@ export default function Layout({ children }) {
                 isOpen ? "block" : "hidden"
               }`}
             >
-              <ul className="flex flex-col bg-[#1B5B45] md:bg-transparent pb-32 w-full -mx-44 md:-mx-64 absolute z-20 md:flex-row gap-4 mt-20 md:mt-4">
-                <li className="pl-16 md:pl-0">
+              <ul className="flex flex-col gap-4 bg-[#1B5B45] md:bg-transparent pb-32 w-[800px] -mx-44 md:-mx-64 absolute z-20 md:flex-row mt-12 md:mt-4">
+                <li className="pl-16 md:pl-0 mt-8 md:mt-0">
                   <Link
                     href="/carrito"
                     className="text-white font-medium text-base "

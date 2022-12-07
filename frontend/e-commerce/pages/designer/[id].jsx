@@ -8,20 +8,20 @@ import { GiCircle } from "react-icons/gi";
 export default function Designer({ data }) {
   return (
     <Layout>
-      <div className="mx-64 mt-60">
+      <div className="mx-4 md:mx-64 mt-32 md:mt-60">
         <div>
           <main className="flex" key={data._id}>
             <Image
               src={data.profileimage.url}
               width="200"
               height="200"
-              className="rounded-full mb-16"
+              className="rounded-full mb-2 md:mb-16 w-16 h-16 md:w-full md:h-full"
             />
-            <div className="flex flex-col px-32">
-              <h2 className="text-2xl font-bold">
+            <div className="flex flex-col px-4 md:px-32">
+              <h2 className="text-lg md:text-2xl font-bold">
                 {data.name + " " + data.lastname}
               </h2>
-              <p className="text-lg">
+              <p className="text-base md:text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
                 ut illum quo, dicta exercitationem, officiis nihil minus,
                 reiciendis eum laboriosam cupiditate architecto tempore error
@@ -29,10 +29,10 @@ export default function Designer({ data }) {
                 omnis deleniti animi consectetur!
               </p>
               <div className="flex gap-8 mt-16">
-                <button className="text-[#F4F0BB] bg-[#1B5B45] text-xl px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
+                <button className="text-[#F4F0BB] bg-[#1B5B45] text-base md:text-xl px-4 md:px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
                   Seguir
                 </button>{" "}
-                <button className="text-[#1B5B45] ring-2 ring-yellow-400 text-xl px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
+                <button className="text-[#1B5B45] ring-2 ring-yellow-400 text-base md:text-xl px-4 md:px-6 py-2 font-semibold mx-4 text-center rounded-2xl">
                   contactar
                 </button>
               </div>

@@ -50,7 +50,6 @@ function Carrito() {
 
                         <section>
                             <ArticleCart setIsActiveModal={setIsActiveModal} />
-                            <ArticleCart setIsActiveModal={setIsActiveModal} />
                         </section>
 
                         <section>

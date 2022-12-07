@@ -3,15 +3,14 @@ import Layout from "../../components/Layout";
 import { useState } from "react";
 import { GiCircle } from "react-icons/gi";
 import { useProduct } from "../../context/ProductContext";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export default function Product({ data }) {
-  
-  const router = useRouter()
+  const router = useRouter();
   const { cart, setCart } = useProduct();
   const [quantity, setQuantity] = useState(0);
 
-  console.log(cart)
+  console.log(cart);
 
   const addQuantity = () => {
     setQuantity(quantity + 1);
@@ -25,7 +24,7 @@ export default function Product({ data }) {
     setQuantity(quantity + 1);
     const inCart = cart.find((item) => item._id === cartItem._id);
     if (!inCart) {
-      setCart([...cart, { ...cartItem}]);
+      setCart([...cart, { ...cartItem }]);
     } else {
       setCart(
         cart.map((item) => {
@@ -35,7 +34,7 @@ export default function Product({ data }) {
         })
       );
     }
-    router.push("/carrito")
+    router.push("/carrito");
   };
 
   return (
@@ -65,9 +64,12 @@ export default function Product({ data }) {
             </span>
             <h4 className="text-2xl text-green-800">Talles</h4>
             <span className="text-[#F4F0BB] bg-[#1B5B45] text-2xl font-semibold p-2 mx-8 text-center rounded-2xl">
-              Xxl-Xl-L
+              {data.sizes}
             </span>
             <h4 className="text-2xl text-green-800">Colores</h4>
+            <span className="text-[#F4F0BB] bg-[#1B5B45] text-2xl font-semibold p-2 mx-8 text-center rounded-2xl">
+              {data.color}
+            </span>
             <div className="flex">
               <div>
                 <div>
@@ -111,7 +113,7 @@ export default function Product({ data }) {
               <h4 className="text-2xl text-green-800 my-8">Cantidad</h4>
               <div className="flex pl-8 gap-8">
                 <div>
-                  <button
+                  {/* <button
                     onClick={(e) => {
                       e.stopPropagation();
                       deleteQuantity();
@@ -119,12 +121,12 @@ export default function Product({ data }) {
                     className="text-2xl text-[#1B5B45]"
                   >
                     -
-                  </button>
+                  </button> */}
                 </div>
                 <span className="px-4 py-2 font-semibold text-lg bg-[#1B5B45] rounded-lg text-[#F4F0BB]">
                   {quantity}
                 </span>
-                <div>
+                {/* <div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -134,7 +136,7 @@ export default function Product({ data }) {
                   >
                     +
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
