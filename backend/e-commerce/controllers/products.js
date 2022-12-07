@@ -36,7 +36,7 @@ const getProductSearch = async (req, res) => {
       name: new RegExp(req.query.name.toLowerCase(), "i"),
     });
     if(req.query.name.toLowerCase().trim() === "") {
-      res.send("Ingrese algo para buscar")
+      res.json("Ingrese algo para buscar")
       return
     }
     res.send(search);
