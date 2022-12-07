@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import { IoIosArrowForward } from "react-icons/io";
 import { GiCircle } from "react-icons/gi";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import axios from "axios";
 
 export default function Home({ data }) {
@@ -24,6 +24,7 @@ export default function Home({ data }) {
   };
 
   return (
+ 
     <Layout>
       <div>
         <Head>
@@ -52,6 +53,8 @@ export default function Home({ data }) {
         </main>
         <section>
           <div className="bg-white">
+          
+     
             {/* Buscador */}
             <div className="px-4 md:px-[480px] pt-16 pb-4">
               <form>
@@ -201,6 +204,7 @@ export default function Home({ data }) {
         </section>
       </div>
     </Layout>
+ 
   );
 }
 

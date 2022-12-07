@@ -14,8 +14,11 @@
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-file-reader-input": "^2.0.0",
     "react-icons": "^4.6.0",
+    "react-input-files": "^1.2.0",
     "react-responsive-carousel": "^3.2.23",
+    "semantic-ui-react-input-file": "^1.0.3",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
