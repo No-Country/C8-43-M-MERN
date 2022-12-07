@@ -1,4 +1,4 @@
-# _E-commerce para estudiantes de la carrera Diseño de Moda 🥻👗👘_
+# _E-commerce sobre Diseño de Moda 🥻👗👘_
 
 <img height="496px" src="./imgValen.jpg" />
 
