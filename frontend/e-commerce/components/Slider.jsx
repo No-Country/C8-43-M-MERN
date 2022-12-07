@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Slider() {
   return (
     <div className="mx-2 md:mx-32 mt-32">
-      <Carousel autoPlay infiniteLoop>
+      <Carousel autoPlay infiniteLoop showThumbs={false}>
         <div className="pb-4">
           <Image
             src="/img/frame_1.png"
