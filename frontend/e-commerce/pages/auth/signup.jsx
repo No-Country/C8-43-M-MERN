@@ -25,9 +25,10 @@ export default function Signup() {
     };
 
     
-    const endpoint = "https://c8-43-m-mern.vercel.app/auth";
+    const endpoint = "https://c8-43-m-mern-api.vercel.app/auth";
 
     const result = await axios.post(endpoint, data);
+    console.log(data)
     if (result.status == 200) {
       return router.push("/");
     }
