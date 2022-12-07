@@ -37,7 +37,7 @@ export default function Home({ data }) {
         <section>
           <div className="bg-white">
             {/* Buscador */}
-            <div className="px-4 md:px-[480px] pt-16 pb-4">
+            <div className="px-4 md:px-32 lg:px-[480px] pt-16 pb-4">
               <form>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -123,45 +123,53 @@ export default function Home({ data }) {
                               />
                             </div>
                             <div className="flex invisible md:visible md:mx-8 mt-2">
-                              <div>
-                                {color == "Celeste" ? (
-                                  <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
-                                ) : (
-                                  ""
-                                )}
+                              <div className="flex gap-2 mt-1">
+                                {color.map((item) => (
+                                  <div>
+                                    <div>
+                                      {item == "Azul" ? (
+                                        <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div>
+                                      {item == "Marron" ? (
+                                        <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div>
+                                      {item == "Negro" ? (
+                                        <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div>
+                                      {item == "Rosa" ? (
+                                        <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                    <div>
+                                      {item == "Blanco" ? (
+                                        <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
+                                      ) : (
+                                        ""
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
-                              <div>
-                                {color == "Marron" ? (
-                                  <GiCircle className="text-amber-500 bg-amber-500 rounded-full mt-2" />
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                              <div>
-                                {color == "Negro" ? (
-                                  <GiCircle className="text-slate-800 bg-slate-800 rounded-full mt-2" />
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                              <div>
-                                {color == "Rosa" ? (
-                                  <GiCircle className="text-pink-400 bg-pink-400 rounded-full mt-2" />
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                              <div>
-                                {color == "Blanco" ? (
-                                  <GiCircle className="text-slate-400 bg-slate-50 rounded-full mt-2" />
-                                ) : (
-                                  ""
-                                )}
-                              </div>
-                              <div className="mt-1">
-                                <p className="invisible md:visible text-gray-700 text-xs md:text-lg font-semibold md:ml-16">
-                                  {sizes}
-                                </p>
+                              <div className="flex gap-2 mt-1 ml-4">
+                                {sizes.map((item) => (
+                                  <p className="invisible md:visible text-gray-700 text-xs md:text-lg font-semibold">
+                                    {item}
+                                  </p>
+                                ))}
                               </div>
                             </div>
                           </div>
