@@ -1,8 +1,23 @@
+import Link from 'next/link';
 import React from 'react'
 import Layout from "../components/Layout";
+import { useProduct } from '../context/ProductContext';
 
 
 const Mercado = () => {
+
+    const { cart } = useProduct();
+
+
+    const sumPrices = () => {
+        let sum = 0
+        for (let product of cart) {
+            sum += product.price
+        }
+        return sum
+    }
+
+
     return (
         <Layout>
             <section className='border'>
@@ -37,8 +52,23 @@ const Mercado = () => {
                 <article className='w-[95%] m-auto flex flex-col justify-center items-center pb-[120px]'>
 
                     <header className='flex gap-[25px]'>
-                        <button className='w-[280px] h-[115px] rounded-[15px] text-[#F4F0BB] bg-[#1B5B45] border-[#1B5B45] border-[2px] text-[24px] font-[300]'>Ingresar a tu <br /> Cuenta de usuario</button>
-                        <button className='w-[280px] h-[115px] rounded-[15px] text-[#1B5B45] border-[#1B5B45] border-[2px] text-[24px] font-[300]'>Crear cuenta de <br /> usuario</button>
+
+                        <button className='w-[280px] h-[115px] rounded-[15px] bg-[#1B5B45] border-[#1B5B45] border-[2px] '>
+                            <Link href={"/auth/signin"}>
+                                <p className='text-[#F4F0BB] text-[24px] font-[300]'>
+                                    Ingresar a tu <br /> Cuenta de usuario
+                                </p>
+                            </Link>
+                        </button>
+
+                        <button className='w-[280px] h-[115px] rounded-[15px]  border-[#1B5B45] border-[2px] '>
+                            <Link href={"/auth/signup"}>
+                                <p className='text-[#1B5B45] text-[24px] font-[300]'>
+                                    Crear cuenta de <br /> usuario
+                                </p>
+                            </Link>
+                        </button>
+
                     </header>
 
                     <div className='mt-[45px] flex flex-col items-center'>
@@ -80,7 +110,7 @@ const Mercado = () => {
                         <footer className='mt-[30px] '>
                             <div className='flex justify-between items-center mb-[35px]'>
                                 <p className='font-[500] text-[20px] text-[#1B5B45]'>Total a pagar</p>
-                                <p className='font-[700] text-[28px] text-[#1B5B45]'>7598 ARS</p>
+                                <p className='font-[700] text-[28px] text-[#1B5B45]'>{sumPrices()}</p>
                             </div>
                             <button className='w-[375px] h-[50px] rounded-[15px] bg-[#1B5B45] flex items-center justify-center'>
                                 <p className='font-[500] text-[24px] text-[#F4F0BB]'>Finalizar compra</p>
