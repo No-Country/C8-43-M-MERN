@@ -18,7 +18,7 @@ export default function Signin() {
     };
 
     // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data);
+    const JSONdata = JSON.toObject(data);
     console.log(JSONdata);
 
     // API endpoint where we send form data.
