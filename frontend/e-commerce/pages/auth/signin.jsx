@@ -18,8 +18,8 @@ export default function Signin() {
     };
 
     // Send the data to the server in JSON format.
-    const JSONdata = JSON.toObject(data);
-    console.log(JSONdata);
+    const JSONdata = JSON.stringify(data);
+ 
 
     // API endpoint where we send form data.
     const endpoint = "https://c8-43-m-mern-api.vercel.app/auth/login";
