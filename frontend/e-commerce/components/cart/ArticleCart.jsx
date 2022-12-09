@@ -16,10 +16,10 @@ const ArticleCart = ({ setIsActiveModal }) => {
             </h3>
           </header>
 
-          <div className="flex flex-col gap-[20px]">
+          <div className="flex flex-col gap-[20px] w-[85vw] items-center">
             <Image src={cart.image.url} width="800" height="800" alt={cart.name} className="w-[380px] h-[290px] rounded-2xl" />
 
-            <div className="bg-[#F4F0BB] w-[380px] h-[135px] rounded-[25px] flex flex-col justify-center">
+            <div className="bg-[#F4F0BB] w-[85vw] max-w-[380px] h-[135px] rounded-[25px] flex flex-col justify-center">
               <ul className="m-[25px]">
                 <li className="flex justify-between ">
                   <p className="font-[500] text-[20px] text-[#1B5B45]">
