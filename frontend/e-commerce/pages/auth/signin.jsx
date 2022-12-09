@@ -17,16 +17,15 @@ export default function Signin() {
       password: event.target.password.value,
     };
 
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.toObject(data);
-    console.log(JSONdata);
-
     // API endpoint where we send form data.
     const endpoint = "https://c8-43-m-mern-api.vercel.app/auth/login";
 
     // Send the form data to our forms API on Vercel and get a response.
-    const response = await axios.post(endpoint, JSONdata);
+    const response = await axios.post(endpoint, data);
+    
     if (response.status === 200) {
+      localStorage.setItem("token", JSON.stringify(response));
+      console.log(response);
       return router.push("/");
     }
     // Get the response data from server as JSON.
