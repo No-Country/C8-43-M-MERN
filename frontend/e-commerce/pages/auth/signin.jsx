@@ -1,36 +1,31 @@
 import React from "react";
+import { useAuth } from "./../../context/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
 
 export default function Signin() {
+  const { user, setUser } = useAuth();
+
   const router = useRouter();
-  // Handles the submit event on form submit.
   const handleSubmit = async (event) => {
-    // Stop the form from submitting and refreshing the page.
     event.preventDefault();
 
-    // Get data from the form.
     const data = {
       email: event.target.email.value,
       password: event.target.password.value,
     };
 
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data); 
- 
-
-    // API endpoint where we send form data.
     const endpoint = "https://c8-43-m-mern-api.vercel.app/auth/login";
 
-    // Send the form data to our forms API on Vercel and get a response.
-    const response = await axios.post(endpoint, JSONdata);
+    const response = await axios.post(endpoint, data);
+
     if (response.status === 200) {
+      localStorage.setItem("token", JSON.stringify(response));
+      setUser(response.data.data.seller);
       return router.push("/");
     }
-    // Get the response data from server as JSON.
-    // If server returns the name submitted, that means the form works.
   };
 
   return (
