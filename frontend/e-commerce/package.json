@@ -11,12 +11,14 @@
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.10",
     "axios": "^1.2.0",
+    "formik": "^2.2.9",
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-responsive-carousel": "^3.2.23",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
