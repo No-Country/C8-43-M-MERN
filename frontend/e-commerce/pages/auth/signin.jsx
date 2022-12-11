@@ -6,7 +6,7 @@ import Image from "next/image";
 import axios from "axios";
 
 export default function Signin() {
-  const { user, setUser } = useAuth();
+  const { setUser } = useAuth();
 
   const router = useRouter();
   const handleSubmit = async (event) => {
