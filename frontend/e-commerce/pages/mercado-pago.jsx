@@ -12,15 +12,15 @@ const Mercado = () => {
                         <div className="bg-[#1B5B45] w-[400px] h-[10px] absolute z-0 "></div>
 
                         <article className="bg-[#1B5B45] w-[77px] h-[77px] rounded-full flex items-center justify-center relative">
-                            <p className="text-center text-white text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">Elije tu prenda</p>
+                            <p className="text-center  text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">Elije tu prenda</p>
                         </article>
 
                         <article className="bg-[#1B5B45] w-[77px] h-[77px] rounded-full flex items-center justify-center relative mx-[125px]">
-                            <p className="text-center text-white text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">confirma tu compra</p>
+                            <p className="text-center  text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">confirma tu compra</p>
                         </article>
 
                         <article className="absolute w-[150px] right-[-115px] bottom-[10px]">
-                            <p className="text-[12px] font-[500] text-center text-[#1B5B45] font-[500]">
+                            <p className="text-[12px] font-[500] text-center text-[#1B5B45]">
                                 si todo esta en orden <br />
                                 te invitamos a <br />
                                 finalizar tu compra
@@ -28,7 +28,7 @@ const Mercado = () => {
                         </article>
 
                         <article className="bg-[#1B5B45] w-[77px] h-[77px] rounded-full flex items-center justify-center relative">
-                            <p className="text-center text-white text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">Selecciona <br /> tu pago</p>
+                            <p className="text-center  text-[12px] mx-[12px] font-[500] text-[#F4F0BB]">Selecciona <br /> tu pago</p>
                         </article>
 
                     </div>

@@ -1,18 +1,24 @@
 import { useAuth } from "./../context/AuthContext";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineClose } from "react-icons/md";
+import { useRouter } from "next/router";
+
 
 export default function Layout({ children }) {
+
+  const router = useRouter();
+
   const { user, setUser } = useAuth();
   console.log(user);
   const [isOpen, setIsOpen] = useState(false);
 
   const logout = () => {
+    router.push("/");
     setUser("");
     localStorage.removeItem("token");
+
   };
 
   return (
@@ -66,23 +72,26 @@ export default function Layout({ children }) {
                     Ayuda
                   </Link>
                 </li>
-                <li className="pl-32 md:pl-0">
+                {!user ? (
+                      <li className="pl-32 md:pl-0">
+                      <Link
+                        href="/auth/signin"
+                        className="text-[#1B5B45] font-medium text-base rounded-full border-2 border-white bg-slate-50 py-6 px-4"
+                      >
+                        Login
+                      </Link>
+                    </li>
+                ) : (
+                  <li className="pl-32 md:pl-0">
                   <Link
-                    href="/auth/signin"
-                    className="text-white font-medium text-base"
-
-                    // className="invisible md:visible"
+                    href="/perfil-cliente"
+                    className="text-[#1B5B45] uppercase font-medium text-base rounded-full border-2 border-white bg-slate-50 px-2 py-4"
                   >
-                    {user ? user.name : "Login"}
-                    {/* <Image
-                    src={user.sellers.profileimage.url}
-                    width="1000"
-                    height="1000"
-                    alt="logo"
-                    className="rounded-full border-2 border-white"
-                  /> */}
+                    {user.name}
                   </Link>
                 </li>
+                ) }
+            
                 <li className="pl-32 md:pl-0">
                       {user && (
                         <button
@@ -90,7 +99,7 @@ export default function Layout({ children }) {
                           onClick={logout}
                         >
                           <div className="flex items-center gap-4">
-                            <span>Cerrar Sesión</span>
+                            <span  className="text-white font-medium text-base">Cerrar Sesión</span>
                           </div>
                         </button>
                       )}

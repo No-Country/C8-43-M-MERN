@@ -10,7 +10,6 @@ import axios from "axios";
 
 export default function Home({ data }) {
   const [product, setProduct] = useState([]);
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     searchProduct(e.target.value);
