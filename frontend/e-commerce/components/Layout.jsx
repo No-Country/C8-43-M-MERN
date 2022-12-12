@@ -1,13 +1,11 @@
 import { useAuth } from "./../context/AuthContext";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineClose } from "react-icons/md";
 import { useRouter } from "next/router";
 
-
 export default function Layout({ children }) {
-
   const router = useRouter();
 
   const { user, setUser } = useAuth();
@@ -18,8 +16,11 @@ export default function Layout({ children }) {
     router.push("/");
     setUser("");
     localStorage.removeItem("token");
-
   };
+
+  useEffect(() => {
+    user;
+  }, []);
 
   return (
     <div>
@@ -72,38 +73,39 @@ export default function Layout({ children }) {
                     Ayuda
                   </Link>
                 </li>
-                {!user ? (
-                      <li className="pl-32 md:pl-0">
-                      <Link
-                        href="/auth/signin"
-                        className="text-[#1B5B45] font-medium text-base rounded-full border-2 border-white bg-slate-50 py-6 px-4"
-                      >
-                        Login
-                      </Link>
-                    </li>
+                {!user || user == "" ? (
+                  <li className="pl-32 md:pl-0">
+                    <Link
+                      href="/auth/signin"
+                      className="text-[#1B5B45] font-medium text-base rounded-full border-2 border-white bg-slate-50 py-6 px-4"
+                    >
+                      Login
+                    </Link>
+                  </li>
                 ) : (
                   <li className="pl-32 md:pl-0">
-                  <Link
-                    href="/perfil-cliente"
-                    className="text-[#1B5B45] uppercase font-medium text-base rounded-full border-2 border-white bg-slate-50 px-2 py-4"
-                  >
-                    {user.name}
-                  </Link>
-                </li>
-                ) }
-            
-                <li className="pl-32 md:pl-0">
-                      {user && (
-                        <button
-                          className="flex flex-col px-8 text-xs text-white"
-                          onClick={logout}
-                        >
-                          <div className="flex items-center gap-4">
-                            <span  className="text-white font-medium text-base">Cerrar Sesión</span>
-                          </div>
-                        </button>
-                      )}
-                    </li>
+                    <Link
+                      href="/perfil-cliente"
+                      className="text-[#1B5B45] uppercase font-medium text-base rounded-full border-2 border-white bg-slate-50 px-2 py-4"
+                    >
+                      {user.name}
+                    </Link>
+                  </li>
+                )}
+                {user &&(
+                  <li className="pl-32 md:pl-0">
+                    <button
+                      className="flex flex-col px-8 text-xs text-white"
+                      onClick={logout}
+                    >
+                      <div className="flex items-center gap-4">
+                        <span className="text-white font-medium text-base">
+                          Cerrar Sesión
+                        </span>
+                      </div>
+                    </button>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

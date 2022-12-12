@@ -69,8 +69,8 @@ export default function Home({ data }) {
               </form>
             </div>
             <div className="flex md:gap-32 mb-32 mx-4 md:mx-16 md:justify-center">
-              {product.map(({ name, image, price }) => (
-                <div className="text-center">
+              {product.map(({ name, image, price, _id }) => (
+                <div key={_id} className="text-center">
                   <h4>{name}</h4>
                   <Image
                     src={image.url}
@@ -91,6 +91,7 @@ export default function Home({ data }) {
                       <div className="z-0">
                         <Image
                           src={profileimage.url}
+                          alt="avatar"
                           width="200"
                           height="200"
                           className="rounded-full w-16 md:w-24 h-16 md:h-24"
@@ -124,7 +125,7 @@ export default function Home({ data }) {
                             <div className="flex invisible md:visible md:mx-8 mt-2">
                               <div className="flex gap-2 mt-1">
                                 {color.map((item) => (
-                                  <div>
+                                  <div key={item}>
                                     <div>
                                       {item == "Azul" ? (
                                         <GiCircle className="text-sky-400 bg-sky-400 rounded-full mt-2" />
@@ -165,7 +166,7 @@ export default function Home({ data }) {
                               </div>
                               <div className="flex gap-2 mt-1 ml-4">
                                 {sizes.map((item) => (
-                                  <p className="invisible md:visible text-gray-700 text-xs md:text-lg font-semibold">
+                                  <p key={item} className="invisible md:visible text-gray-700 text-xs md:text-lg font-semibold">
                                     {item}
                                   </p>
                                 ))}
