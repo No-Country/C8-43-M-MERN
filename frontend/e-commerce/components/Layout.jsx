@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   const router = useRouter();
 
   const { user, setUser } = useAuth();
-  console.log(user);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const logout = () => {
@@ -92,7 +92,9 @@ export default function Layout({ children }) {
                     </Link>
                   </li>
                 )}
-                {user &&(
+                {!user || user == "" ? (
+                  ""
+                ) : (
                   <li className="pl-32 md:pl-0">
                     <button
                       className="flex flex-col px-8 text-xs text-white"
