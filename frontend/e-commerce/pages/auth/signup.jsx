@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import axios from 'axios'
-
+import axios from "axios";
 
 export default function Signup() {
   const router = useRouter();
@@ -21,36 +20,34 @@ export default function Signup() {
       lastname: inputs.lastname,
       email: inputs.email,
       password: inputs.password,
-      role: inputs.role
+      role: inputs.role,
     };
 
-    
     const endpoint = "https://c8-43-m-mern-api.vercel.app/auth";
 
     const result = await axios.post(endpoint, data);
-    console.log(data)
+    console.log(data);
     if (result.status == 200) {
       return router.push("/");
     }
   };
 
   return (
-
-    <div className="bg-[#1B5B45] grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[0.2fr_1fr_0.2fr_1fr] gap-4 h-full place-items-center">
+    <div className="bg-[#1B5B45] grid grid-cols-[2fr_1fr_1fr_1fr] md:grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[0.2fr_1fr_0.2fr_1fr] gap-4 h-full place-items-center">
       <img
-        className=" col-start-2 col-end-4  pt-16 mx-1"
+        className="col-start-2 col-end-2 md:col-end-4  pt-16 mx-1"
         src="/img/logo2.png"
         width="300"
         height="300"
         alt="logo"
       />
       <form
-        className="gap-0 col-start-2 col-end-4 row-start-2"
+        className="gap-0 col-start-2 col-end-2 md:col-end-4 row-start-2"
         onSubmit={handleSubmit}
       >
-        <div className="formulario__nombre flex justify-between items-center m-0">
+        <div className="flex flex-col md:flex-row md:justify-between items-center m-0">
           <div className="flex flex-col m-0 py-4 ">
-            <label className="text-white text-sm font-medium" htmlFor="name">
+            <label className="text-white" htmlFor="name">
               Nombre
             </label>
             <input
@@ -65,7 +62,7 @@ export default function Signup() {
           </div>
           <div className="flex flex-col col-start-3 col-end-4">
             <label
-              className="text-white  text-sm font-medium"
+              className="text-white"
               htmlFor="lastname"
             >
               Apellido
@@ -131,21 +128,21 @@ export default function Signup() {
         <div className="flex flex-col">
           <h3 className="text-center text-white">¿Qué te gustaría hacer</h3>
           <br />
-          <div className="py-5 px-4 flex">
-            <div>
+          <div className="py-5 px-4 flex flex-col gap-4 md:flex-row">
+            <div className="mx-2">
               <label htmlFor="role" className="text-white">
                 Promover y diseñar productos
               </label>
               <input
-                className="px-4"
                 type="checkbox"
                 id="seller"
                 name="role"
                 value="seller"
                 onChange={handleChange}
+                className="mx-4"
               />
             </div>
-            <div className="pl-8">
+            <div className="md:pl-8 mx-2">
               <label htmlFor="role" className="text-white">
                 Ver y comprar diseños únicos
               </label>
@@ -155,33 +152,39 @@ export default function Signup() {
                 name="role"
                 value="user"
                 onChange={handleChange}
+                className="mx-4"
               />
             </div>
           </div>
         </div>
-        <div className="formulario__checkbox py-4">
-          <input
-            className="accent-[#F4F0BB]"
-            type="checkbox"
-            value="first_checkbox"
-          />
-          <span className=" text-white py-8">
-            He leído y estoy de acuerdo con las políticas de privacidad.
-            (*requerido)
-          </span>
+        <div className="py-4 gap-4">
+          <div>
+            <input
+              className="accent-[#F4F0BB] mr-4"
+              type="checkbox"
+              value="first_checkbox"
+            />
+            <span className=" text-white py-8">
+              He leído y estoy de acuerdo con las políticas de privacidad.
+              (*requerido)
+            </span>
+          </div>
           <br />
-          <input
-            className="text-[#F4F0BB]"
-            type="checkbox"
-            value="first_checkbox"
-          />
-          <span className=" text-white py-8">
-            Suscribirse para recibir información especial sobre Valen vía email.
-          </span>
+          <div>
+            <input
+              className="text-[#F4F0BB] mr-4"
+              type="checkbox"
+              value="first_checkbox"
+            />
+            <span className=" text-white py-8">
+              Suscribirse para recibir información especial sobre Valen vía
+              email.
+            </span>
+          </div>
         </div>
 
         <button
-          className="  col-start-2 col-end-4 w-full shadow-2xl bg-[#F4F0BB] text-[#1B5B45]  rounded-md py-2"
+          className="mt-4  col-start-2 col-end-4 w-full shadow-2xl bg-[#F4F0BB] text-[#1B5B45]  rounded-md py-2"
           type="submit"
         >
           Crear cuenta
