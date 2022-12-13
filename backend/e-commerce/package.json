@@ -72,6 +72,7 @@
     "mailtrap": "^3.0.1",
     "media-typer": "^0.3.0",
     "memory-pager": "^1.5.0",
+    "mercadopago": "^1.5.14",
     "merge-descriptors": "^1.0.1",
     "methods": "^1.1.2",
     "mime": "^1.6.0",

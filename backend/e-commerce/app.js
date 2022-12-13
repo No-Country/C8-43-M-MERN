@@ -13,13 +13,13 @@ const dbConnect = require("./config/mongo");
 app.use(cors());
 app.use(express.json()); 
 app.use((req, res, next) => {
-  res.header(`Access-Control-Allow-Origin", https://c8-43-m-mern-api.vercel.app/`); //!ATENCION VARIABLE PARA DEPLOY
+  res.header(`Access-Control-Allow-Origin", http://localhost:3001`); //!ATENCION VARIABLE PARA DEPLOY
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Access-Control-Allow-Methods", "GET, USE, POST, OPTIONS, PUT, DELETE");
   next();
 });
 

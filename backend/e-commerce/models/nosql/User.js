@@ -54,6 +54,10 @@ const UserSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "sellers",
     }],
+    shoppingcart: {
+      type: Schema.Types.ObjectId,
+      ref: "shoppingcarts",
+    },
   },
   { timestamps: true, versionKey: false }
 );

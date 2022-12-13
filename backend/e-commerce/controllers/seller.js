@@ -184,7 +184,7 @@ const banProduct = async (req, res) => {
 
     res.send("Producto suspendido");
   } catch (error) {
-    handleHttpError(res, "ERROR_BAN_IPRODUCT");
+    handleHttpError(res, "ERROR_BAN_PRODUCT");
   }
 };
 
